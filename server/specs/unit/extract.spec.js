@@ -2,22 +2,29 @@
 
 var mocha = require('mocha');
 var chai = require('chai');
-var should = chai.should();
+var expect = chai.expect;
 
-var pathFile = '/specs/resources/test.dat';
-var EXTRACT = require('./extract.js');//(pathFile);
-
-console.log(__dirname +'/../../server/extract/extract.js');
+var filePath = __dirname+'/../resources/test.dat';
+var extract = require('./../../extract/extract.js');
 
 describe('Extract Test:', () => {
-	//var extractInstance = new EXTRACT();
+	
+	it('it should return file readed', () =>{
+		var expectedContentFromFile = 	'001ç1234567891234çDiegoç50000' +'\n'+
+					   					'001ç3245678865434çRenatoç40000.99';
+		
+		var actualContentFromFile = extract.readInputFile(filePath);
+				
+		expect(actualContentFromFile).to.be.equal(expectedContentFromFile);
+	});
 
-	it('it should return line readed', () =>{
-		var expected = '001ç1234567891234çDiegoç50000';
-		//var inputFile = EXTRACT.findFileName(pathFile);
-		EXTRACT.lineReaderOnEvent(pathFile);
-		//console.log(lineReader);
-		//var lineReaded = EXTRACT.lineReaded();
-	//	console.log(lineReaded)//.should.toEqual(expected);
+	it('it should return error - TypeError: path must be a string', () =>{
+		expect(() => {extract.readInputFile()}).to.throw(TypeError);
+	});
+
+	it('it should return error - Error: ENOENT file not found', () =>{
+		var inexistentFilePath = '/test/inexistentFile.dat';
+		
+		expect(function(){extract.readInputFile(inexistentFilePath)}).to.throws(Error);
 	});
 });
