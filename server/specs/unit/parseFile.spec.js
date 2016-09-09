@@ -9,26 +9,21 @@ var transform = require('./../../transform/parseFile.js');
 
 describe('parseFile Test:', () => {
 	
-	/*it('it should return file readed', () =>{
-		var expectedContentFromFile = 	'001ç1234567891234çDiegoç50000' +'\n'+
-					   					'001ç3245678865434çRenatoç40000.99';
-		
-		var linesSeparated = transform.parseString(filePath);
-				
-		//expect(actualContentFromFile).to.be.equal(expectedContentFromFile);
-	});*/
-
-	it('it should return file readed', () =>{
-		var expectedContentFromExtract = 	{
+	it('it should return struct JSON of lines readed from file', () =>{
+		var expectedContentFromExtract = JSON.stringify([{
 			id: '001',
 			documentCode: '1234567891234',
 			name: 'Diego', 
 			thirdInfo: '50000'
-		};	   					
+		}]);	   					
 		
-		var structOfSeparatedLine = transform.parseLinesFromInputFile(filePath);
-				
-		expect(structOfSeparatedLine).to.be.equal(expectedContentFromExtract);
+		var structOfSeparatedLines = JSON.stringify(transform.parseLinesFromInputFile(filePath));
+			
+		expect(structOfSeparatedLines).to.be.equal(expectedContentFromExtract);
+	});
+
+	it('it should return TypeError: no data received from Extract', () =>{
+		expect(()=>{transform.parseLinesFromInputFile()}).to.throw(TypeError, 'path must be a string');
 	});
 
 });

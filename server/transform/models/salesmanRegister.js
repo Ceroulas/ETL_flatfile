@@ -1,40 +1,40 @@
 'use strict';
 module.exports = Salesman;
 
-function Salesman(CPF, name, salary) {
+function Salesman(documentCode, name, salary) {
 	Salesman.count = ++Salesman.count || 1;
 	
-	this.CPF = CPF;
+	this.documentCode = documentCode;
 	this.name = name;
 	this.salary = salary;
 }
 
-function getCPF()
+Salesman.prototype.getDocumentCode = function()
 {
-  return this.CPF;
+  return this.documentCode;
 }
   
-function setCPF(CPF)
+Salesman.prototype.setDocumentCode = function(documentCode)
 {
-  this.CPF = CPF;
+  this.documentCode = documentCode;
 }
 
-function getName()
+Salesman.prototype.getName = function()
 {
   return this.name;
 }
   
-function setName(name)
+Salesman.prototype.setName = function(name)
 {
   this.name = name;
 }
 
-function getSalary()
+Salesman.prototype.getSalary = function()
 {
   return this.salary;
 }
   
-function setSalary(salary)
+Salesman.prototype.setSalary = function(salary)
 {
   this.salary = salary;
 }

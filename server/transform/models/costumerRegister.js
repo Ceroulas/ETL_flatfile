@@ -1,41 +1,43 @@
 'use strict';
 module.exports = Costumer;
 
-function Costumer(CNPJ, name, businessArea) {
+
+
+function Costumer(documentCode, name, businessArea) {
 	Costumer.count = ++Costumer.count || 1;
 	
-	this.CNPJ = CNPJ;
+	this.documentCode = documentCode;
 	this.name = name;
 	this.businessArea = businessArea;
 	
 }
 
-function getCNPJ()
+Costumer.prototype.getDocumentCode = function()
 {
-  return this.CNPJ;
+  return this.documentCode;
 }
   
-function setCNPJ(CNPJ)
+Costumer.prototype.setDocumentCode = function(documentCode)
 {
-  this.CNPJ = CNPJ;
+  this.documentCode = documentCode;
 }
 
-function getName()
+Costumer.prototype.getName = function()
 {
   return this.name;
 }
   
-function setName(name)
+Costumer.prototype.setName = function(name)
 {
   this.name = name;
 }
 
-function getBusinessArea()
+Costumer.prototype.getBusinessArea = function()
 {
   return this.businessArea;
 }
   
-function setBusinessArea(businessArea)
+Costumer.prototype.setBusinessArea = function(businessArea)
 {
   this.businessArea = businessArea;
 }

@@ -1,35 +1,31 @@
 'use strict';
 
 var extract = require('./../extract/extract.js');
-var fileRegisters = require('./fileRegisters.js')
-//var load = require('./../load/writeFile.js');
-//var Costumer = require('./models/costumerRegister.js');
-//var Salesman = require('./models/salesmanRegister.js');
-//var Sale = require('./models/saleRegister.js');
-
-var fileOutputFolderPath = __dirname+'/../../data/out/test.dat';
+var validate = require("validate.js");
 
 const NEWLINE_SEPARATOR_FROM_FILE = '\n';
-const SEPARATOR_FOR_LINE = 'ç';
-
+const SEPARATOR_OF_FIELDS_FOR_LINE = 'ç';
+const SALE_ID = '003';
 const POSITION_IN_SPLIT_FOR_ID = 0;
 const POSITION_IN_SPLIT_FOR_DOC_CODE = 1;
 const POSITION_IN_SPLIT_FOR_NAME = 2;
+const POSITION_IN_SPLIT_FOR_SALE_INFO = 2;
+const POSITION_IN_SPLIT_FOR_SALESMAN_NAME = 3;
 const POSITION_IN_SPLIT_FOR_3TH_INFO = 3;
-
-//var InfosForOuputFile = new Map();
 
 module.exports = {
 
 	parseLinesFromInputFile: function(filePath){
-		var contentFromFileSplittedInLines = lineSeparator(filePath);
-		contentFromFileSplittedInLines.forEach(function(line){
-			var structLineParsed = createStructFromSeparatingElementsFromLine(line);
-			fileRegisters.selectWhatRegisterToFill(structLineParsed);
-		})
-
-		//fillOuputMapForOutputFile();
-		//load.writeFileInOutPutFolder(fileOutputFolderPath);
+		try{
+			var contentFromFileSplittedInLines = lineSeparator(filePath);
+			var structLinesParsed = [];
+			contentFromFileSplittedInLines.forEach(function(line){
+				structLinesParsed.push(createStructFromSeparatingElementsFromLine(line));
+			});
+		}catch(err){
+			throw err;
+		}
+		return structLinesParsed;
 	}
 }
 
@@ -42,21 +38,23 @@ function receiveRawDataFromFileRead(filePath){
 }
 
 function separateDifferentElementsFromLine(inputLine){
-	return inputLine.split(SEPARATOR_FOR_LINE);
+	return inputLine.split(SEPARATOR_OF_FIELDS_FOR_LINE);
 }
 
 function createStructFromSeparatingElementsFromLine(inputLine){
 	var lineParsed = separateDifferentElementsFromLine(inputLine);
-	var structOfInfosFromLine = {
-		id: lineParsed[POSITION_IN_SPLIT_FOR_ID],
-		documentCode: lineParsed[POSITION_IN_SPLIT_FOR_DOC_CODE],
-		name: lineParsed[POSITION_IN_SPLIT_FOR_NAME], 
-		thirdInfo: lineParsed[POSITION_IN_SPLIT_FOR_3TH_INFO]
-	}
-	return  structOfInfosFromLine;
+	if(lineParsed[POSITION_IN_SPLIT_FOR_ID] == SALE_ID)
+		return {
+			id: lineParsed[POSITION_IN_SPLIT_FOR_ID],
+			documentCode: lineParsed[POSITION_IN_SPLIT_FOR_DOC_CODE],
+			saleInfo: lineParsed[POSITION_IN_SPLIT_FOR_SALE_INFO], 
+			salesmanName: lineParsed[POSITION_IN_SPLIT_FOR_SALESMAN_NAME]
+		};
+	else			
+		return {
+			id: lineParsed[POSITION_IN_SPLIT_FOR_ID],
+			documentCode: lineParsed[POSITION_IN_SPLIT_FOR_DOC_CODE],
+			name: lineParsed[POSITION_IN_SPLIT_FOR_NAME], 
+			thirdInfo: lineParsed[POSITION_IN_SPLIT_FOR_3TH_INFO]
+		};
 }
-
-/*function fillOuputMapForOutputFile(){
-	InfosForOuputFile.set('costumerCount', Costumer.count);
-	InfosForOuputFile.set('salesmanCount', Salesman.count);
-}*/

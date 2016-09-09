@@ -1,6 +1,8 @@
 'use strict';
 
 var parseFile = require('./parseFile.js');
+var parseSaleInfo = require('./parseSaleInfo.js');
+var calculateSale = require('./calculateSale.js');
 var Costumer = require('./models/costumerRegister.js');
 var Salesman = require('./models/salesmanRegister.js');
 var Sale = require('./models/saleRegister.js');
@@ -11,7 +13,7 @@ const SALE_ID = '003';
 
 var arrayOfCostumersInputFile = [];
 var arrayOfSalesmansInputFile = [];
-
+var arrayOfSalesInputFile = [];
 
 module.exports = {
 
@@ -29,17 +31,31 @@ module.exports = {
 			default:
 				console.error('ID not recognized in System. Verify your file syntax.');		
 		}
-	}
-}
+	},
+/*
+	calculateMostExpensiveSale: function() {
+		return Math.max.apply(null, utils.mapArray(salesArr));
+	},
 
+	calculateWorstSalesman: function() {
+		var minSale = Math.min.apply(null, utils.mapArray(salesArr));
+		var worstSalesman = '';
+		for (var i = 0, len = salesArr.length; i < len; i++) {
+	    	if(salesArr[i].value == minSale){	    	
+	    		worstSalesman = salesArr[i].salesman;
+	    	}	
+		}
+		return worstSalesman;
+	}*/
+	
+}
 
 function fillCostumerRegister(structOfInfosFromLine){
 	if( !findIfExistentInRegister(arrayOfCostumersInputFile, structOfInfosFromLine.documentCode)) {
 		var costumerObj = new Costumer(structOfInfosFromLine.documentCode, structOfInfosFromLine.name, structOfInfosFromLine.thirdInfo);
 		arrayOfCostumersInputFile.push(costumerObj);
 	}
-	else
-		console.log('Costumer already in register.');
+	else console.info('Costumer already in register.');
 }
 
 function fillSalesmanRegister(structOfInfosFromLine){
@@ -47,22 +63,24 @@ function fillSalesmanRegister(structOfInfosFromLine){
 		var salesmanObj = new Salesman(structOfInfosFromLine.documentCode, structOfInfosFromLine.name, structOfInfosFromLine.thirdInfo);
 		arrayOfSalesmansInputFile.push(salesmanObj);
 	}
-	else
-		console.log('Salesman already in register.');	
+	else console.info('Salesman already in register.');	
 }
 
-function fillSaleRegister(){
-	console.log('Entrei no Sale');
+function fillSaleRegister(structOfInfosFromLine){
+	var saleInfoParsed = parseSaleInfo.parseSaleInfo(structOfInfosFromLine.saleInfo);
+	var balanceSaleCalculated = calculateSale.retrieveBalanceOfSales(saleInfoParsed);
+	var saleObj = new Sale(structOfInfosFromLine.documentCode, balanceSaleCalculated, structOfInfosFromLine.salesmanName)
+	arrayOfSalesInputFile.push(saleObj);
 }
 
 function findIfExistentInRegister(array,findCode){
-	if(array.length > 0){
-		array.forEach(function(item){
-			if(item.documentCode == findCode)
-				return true;
-		})
-		return false;
-	}else{
-		return false;
-	}
-}	
+	var isExistentInArray = false;
+	array.forEach(function(item){
+		if(item.documentCode == findCode){
+			isExistentInArray = true;
+		}
+	});
+	return isExistentInArray;
+}
+
+
