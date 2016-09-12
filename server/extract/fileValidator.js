@@ -3,14 +3,10 @@
 var validFileName  = require('valid-filename');
 
 module.exports = {
-	//VERIFICAR
-	/*findFileName: function(inputPathFile){
+	
+	findFileName: function(inputPathFile){
 		return inputPathFile.split(/(\\|\/)/g).pop();
 	},
-	//VERIFICAR
-	fileWithoutExtension: function(fileName){
-		return fileName.substring(fileName.lastIndexOf('/')+1, fileName.lastIndexOf('.'));
-	},*/
 
 	fileExtensionVerification(inputFileName){
 		try{

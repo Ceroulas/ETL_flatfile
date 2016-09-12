@@ -1,14 +1,13 @@
 'use strict';
 
-var parseFile = require('./parseFile.js');
 var parseSaleInfo = require('./parseSaleInfo.js');
 var calculateSale = require('./calculateSale.js');
 var Costumer = require('./models/costumerRegister.js');
 var Salesman = require('./models/salesmanRegister.js');
 var Sale = require('./models/saleRegister.js');
 
-const COSTUMER_ID = '001';
-const SALESMAN_ID = '002';
+const SALESMAN_ID = '001';
+const COSTUMER_ID = '002';
 const SALE_ID = '003';
 
 var arrayOfCostumersInputFile = [];
@@ -19,11 +18,11 @@ module.exports = {
 
 	selectWhatRegisterToFill: function (structOfInfosFromLine){
 		switch(structOfInfosFromLine.id){
-			case COSTUMER_ID:
-				fillCostumerRegister(structOfInfosFromLine);
-				break;
 			case SALESMAN_ID:
 				fillSalesmanRegister(structOfInfosFromLine);
+				break;
+			case COSTUMER_ID:
+				fillCostumerRegister(structOfInfosFromLine);
 				break;
 			case SALE_ID:
 				fillSaleRegister(structOfInfosFromLine);
@@ -32,22 +31,10 @@ module.exports = {
 				console.error('ID not recognized in System. Verify your file syntax.');		
 		}
 	},
-/*
-	calculateMostExpensiveSale: function() {
-		return Math.max.apply(null, utils.mapArray(salesArr));
-	},
 
-	calculateWorstSalesman: function() {
-		var minSale = Math.min.apply(null, utils.mapArray(salesArr));
-		var worstSalesman = '';
-		for (var i = 0, len = salesArr.length; i < len; i++) {
-	    	if(salesArr[i].value == minSale){	    	
-	    		worstSalesman = salesArr[i].salesman;
-	    	}	
-		}
-		return worstSalesman;
-	}*/
-	
+	getSalesArray: function (){
+		return arrayOfSalesInputFile;
+	}	
 }
 
 function fillCostumerRegister(structOfInfosFromLine){
@@ -82,5 +69,3 @@ function findIfExistentInRegister(array,findCode){
 	});
 	return isExistentInArray;
 }
-
-

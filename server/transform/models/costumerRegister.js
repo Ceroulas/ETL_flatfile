@@ -1,8 +1,6 @@
 'use strict';
 module.exports = Costumer;
 
-
-
 function Costumer(documentCode, name, businessArea) {
 	Costumer.count = ++Costumer.count || 1;
 	

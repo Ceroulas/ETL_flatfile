@@ -1,7 +1,11 @@
 'use strict';
 
 var extract = require('./../extract/extract.js');
-var validate = require("validate.js");
+var fillRegisters = require('./fillRegisters.js');
+var writeFile = require('./../load/writeFile.js');
+var parseFileValidator = require('./parseFileValidator.js');
+
+var outputFilePath = __dirname+'/../../data/out/test.done.dat';
 
 const NEWLINE_SEPARATOR_FROM_FILE = '\n';
 const SEPARATOR_OF_FIELDS_FOR_LINE = 'ç';
@@ -15,26 +19,28 @@ const POSITION_IN_SPLIT_FOR_3TH_INFO = 3;
 
 module.exports = {
 
-	parseLinesFromInputFile: function(filePath){
+	parseLinesFromInputFile: function(contentFromFile){
 		try{
-			var contentFromFileSplittedInLines = lineSeparator(filePath);
-			var structLinesParsed = [];
+			var contentFromFileSplittedInLines = lineSeparator(contentFromFile);
+			var structLineParsed = '';
 			contentFromFileSplittedInLines.forEach(function(line){
-				structLinesParsed.push(createStructFromSeparatingElementsFromLine(line));
+				if(parseFileValidator.validateLineSeparator(line, SEPARATOR_OF_FIELDS_FOR_LINE)){
+					structLineParsed = createStructFromSeparatingElementsFromLine(line);
+
+					if(parseFileValidator.validateElementsFromParsedLine(structLineParsed))
+						fillRegisters.selectWhatRegisterToFill(structLineParsed);
+				}
 			});
+			writeFile.writeFileInOutPutFolder(outputFilePath);
 		}catch(err){
 			throw err;
 		}
-		return structLinesParsed;
+		return structLineParsed;
 	}
 }
 
-function lineSeparator(filePath){
-	return receiveRawDataFromFileRead(filePath).split(NEWLINE_SEPARATOR_FROM_FILE);	
-}
-
-function receiveRawDataFromFileRead(filePath){
-	return extract.readInputFile(filePath);
+function lineSeparator(contentFromFile){
+	return contentFromFile.split(NEWLINE_SEPARATOR_FROM_FILE);	
 }
 
 function separateDifferentElementsFromLine(inputLine){
