@@ -6,13 +6,14 @@ var fs = require('fs');
 var chai = require('chai');
 var expect = chai.expect;
 
-var load = require('./../../../load/writeFile.js');
-var structResumeOfFile = require('./../../../transform/prepareInfoForOutput.js');
+var load = require('./../../../load/writefile.js');
+var structResumeOfFile = require('./../../../transform/prepareinfoforoutput.js');
 var outputFilePath = __dirname+'/../../resources/test.done.dat';
 
-describe('writeFile Test:', () => {
+describe('Write file Test:', () => {
 
 	it('Should write file in the output directory', () =>{
+		
 		sinon.stub(structResumeOfFile, 'prepareInfoForLoad', function(){
 			return {
 				costumerCount: '3', 

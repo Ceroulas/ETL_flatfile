@@ -1,10 +1,10 @@
 'use strict';
 
-var parseSaleInfo = require('./parseSaleInfo.js');
-var calculateSale = require('./calculateSale.js');
-var Costumer = require('./models/costumerRegister.js');
-var Salesman = require('./models/salesmanRegister.js');
-var Sale = require('./models/saleRegister.js');
+var parseSaleInfo = require('./parsesaleinfo.js');
+var calculateSale = require('./calculatesale.js');
+var Costumer = require('./models/costumerregister.js');
+var Salesman = require('./models/salesmanregister.js');
+var Sale = require('./models/saleregister.js');
 
 const SALESMAN_ID = '001';
 const COSTUMER_ID = '002';

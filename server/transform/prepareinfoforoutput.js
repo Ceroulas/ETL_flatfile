@@ -1,8 +1,8 @@
 'use strict';
 
-var caculateInfoFromSale  = require('./calculateInfoFromSale.js');
-var Costumer = require('./models/costumerRegister.js');
-var Salesman = require('./models/salesmanRegister.js');
+var caculateInfoFromSale  = require('./calculateinfofromsale.js');
+var Costumer = require('./models/costumerregister.js');
+var Salesman = require('./models/salesmanregister.js');
 
 module.exports = {
 	prepareInfoForLoad: function(){

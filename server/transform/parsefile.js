@@ -1,9 +1,9 @@
 'use strict';
 
 var extract = require('./../extract/extract.js');
-var fillRegisters = require('./fillRegisters.js');
-var writeFile = require('./../load/writeFile.js');
-var parseFileValidator = require('./parseFileValidator.js');
+var fillRegisters = require('./fillregisters.js');
+var writeFile = require('./../load/writefile.js');
+var parseFileValidator = require('./parsefilevalidator.js');
 
 var outputFilePath = __dirname+'/../../data/out/test.done.dat';
 

@@ -4,9 +4,9 @@ var mocha = require('mocha');
 var chai = require('chai');
 var expect = chai.expect;
 
-var transform = require('./../../../transform/parseFile.js');
+var transform = require('./../../../transform/parsefile.js');
 
-describe('parseFile Test:', () => {
+describe('Parse file Test:', () => {
 	
 	it('it should return struct of line parsed readed from file', () =>{
 		var contentFromFile = '001ç1234567891234çDiegoç50000';

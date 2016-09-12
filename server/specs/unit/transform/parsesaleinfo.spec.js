@@ -5,9 +5,9 @@ var chai = require('chai');
 var expect = chai.expect;
 
 var filePath = __dirname+'/../../resources/test.dat';
-var transform = require('./../../../transform/parseSaleInfo.js');
+var transform = require('./../../../transform/parsesaleinfo.js');
 
-describe('parseSaleInfo Test:', () => {
+describe('Parse Sale Info Test:', () => {
 	
 	it('it should return the expect sale string parsed.', () =>{
 		var stringSaleUnparsed = '[1-10-100,2-30-2.50,3-40-3.10]';

@@ -4,9 +4,9 @@ var mocha = require('mocha');
 var chai = require('chai');
 var expect = chai.expect;
 
-var fileValidator = require('./../../../extract/fileValidator.js');
+var fileValidator = require('./../../../extract/extractvalidator.js');
 
-describe('Extract File Verification Test:', () => {
+describe('Extract Verification Test:', () => {
 	
 	it('fileExtensionVerification: it should return true (it is a .dat file)', () =>{
 		var fileExtensionToBeTested = 'test.dat';

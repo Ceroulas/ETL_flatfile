@@ -4,9 +4,9 @@ var mocha = require('mocha');
 var chai = require('chai');
 var expect = chai.expect;
 
-var transform = require('./../../../transform/parseFileValidator.js');
+var transform = require('./../../../transform/parsefilevalidator.js');
 
-describe('parseFileValidator Test:', () => {
+describe('Parse File Validator Test:', () => {
 	
 	it('it should return true: number of line separators is ok', () =>{
 		var lineSeparator = 'ç';

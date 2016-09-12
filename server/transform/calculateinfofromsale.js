@@ -1,6 +1,6 @@
 'use strict';
 
-var fillRegisters = require('./fillRegisters.js');
+var fillRegisters = require('./fillregisters.js');
 
 module.exports = {
 	calculateMostExpensiveSale: function() {

@@ -5,9 +5,9 @@ var chai = require('chai');
 var expect = chai.expect;
 
 var filePath = __dirname+'/../../resources/test.dat';
-var transform = require('./../../../transform/calculateSale.js');
+var transform = require('./../../../transform/calculatesale.js');
 
-describe('calculateSale Test:', () => {
+describe('Calculate sale Test:', () => {
 	
 	it('it should return the expected balance of sales ', () =>{
 		var stringSaleToCalculate = [

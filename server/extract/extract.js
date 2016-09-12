@@ -1,17 +1,17 @@
 'use strict';
 
 var fs = require('fs');
-var fileValidator = require('./fileValidator.js');
-var parseFile = require('./../transform/parseFile.js');
+var extractValidator = require('./extractvalidator.js');
+var parseFile = require('./../transform/parsefile.js');
 var inputFilePath = '/../../data/in/test.dat';
 
 module.exports = {
 
 	readInputFile: function(inputFilePath){
 		try{
-			var inputFileName = fileValidator.findFileName(inputFilePath);
-			if(fileValidator.fileNameValidation(inputFileName)){
-				if(fileValidator.fileExtensionVerification(inputFileName)){
+			var inputFileName = extractValidator.findFileName(inputFilePath);
+			if(extractValidator.fileNameValidation(inputFileName)){
+				if(extractValidator.fileExtensionVerification(inputFileName)){
 					var contentFromFile =  fs.readFileSync(inputFilePath).toString();
 					parseFile.parseLinesFromInputFile(contentFromFile);
 				}else{

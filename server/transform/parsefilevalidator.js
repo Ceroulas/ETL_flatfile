@@ -1,7 +1,5 @@
 'use strict';
 
-var validate = require('validate.js');
-
 const NUM_POSSIBLES_LINE_SEPARATORS_IN_LINE = 3;
 const ONE_COUNT_LINE_SEPARATOR = 1;
 

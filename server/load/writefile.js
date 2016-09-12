@@ -1,7 +1,7 @@
 'use strict';
 
 var fs = require('fs');
-var structResumeOfFile = require('./../transform/prepareInfoForOutput.js');
+var structResumeOfFile = require('./../transform/prepareinfoforoutput.js');
 
 module.exports = {
 

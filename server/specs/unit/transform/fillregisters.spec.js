@@ -7,9 +7,9 @@ var rewire = require('rewire');
 var chai = require('chai');
 var expect = chai.expect;
 
-var fillRegisters = rewire('./../../../transform/fillRegisters.js');
+var fillRegisters = rewire('./../../../transform/fillregisters.js');
 
-describe('fillRegisters tests:', function(){
+describe('Fill registers tests:', function(){
 
 	beforeEach(function() {
     	this.sinon.stub(console, 'info');
