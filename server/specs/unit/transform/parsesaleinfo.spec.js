@@ -15,12 +15,16 @@ describe('Parse Sale Info Test:', () => {
 			['1','10','100'],
 			['2','30','2.50'],
 			['3','40','3.10']
-		];	   					
-		expect(transform.parseSaleInfo(stringSaleUnparsed)).to.deep.equal(expectedSaleInfoParsed);
+		];
+		var parseSale = transform.parseSaleInfo(stringSaleUnparsed);	   					
+		expect(parseSale).to.deep.equal(expectedSaleInfoParsed);
 	});
 
 	it('it should return TypeError: no data received to parse', () =>{
-		expect(()=>{transform.parseSaleInfo()}).to.throw(TypeError, 'Cannot read property \'replace\' of undefined');
+		var messageError = 'Cannot read property \'replace\' of undefined';
+
+		var parseSale = ()=>{transform.parseSaleInfo()};
+		expect(parseSale).to.throw(TypeError, messageError);
 	});
 
 });

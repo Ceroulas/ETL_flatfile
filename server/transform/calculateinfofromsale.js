@@ -3,25 +3,23 @@
 var fillRegisters = require('./fillregisters.js');
 
 module.exports = {
-	calculateMostExpensiveSale: function() {
-		var salesArray = fillRegisters.getSalesArray();
-		return Math.max.apply(null, mapSalesArray(salesArray));
+	calculateMostExpensiveSale: function (infoFromStructOfLines) {
+		return Math.max.apply(null, mapSalesArray(infoFromStructOfLines));
 	},
 
-	calculateWorstSalesman: function() {
-		var salesArray = fillRegisters.getSalesArray();
-		var minSale = Math.min.apply(null, mapSalesArray(salesArray));
-		return findWorstSalesmanInArray(salesArray, minSale);
+	calculateWorstSalesman: function (infoFromStructOfLines) {
+		var minSale = Math.min.apply(null, mapSalesArray(infoFromStructOfLines));
+		return findWorstSalesmanInArray(infoFromStructOfLines, minSale);
 	}
 }
 
-function mapSalesArray(salesArray){
+var mapSalesArray = function (salesArray) {
 	return salesArray.map(function(item){
 			return item.balanceOfSales;
 		 });
 }
 
-function findWorstSalesmanInArray(salesArray, minSale){
+var findWorstSalesmanInArray = function (salesArray, minSale) {
 	var worstSalesmanFound = '';
 	salesArray.forEach(function(item){
 		if(item.balanceOfSales == minSale){	    	

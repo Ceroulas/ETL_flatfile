@@ -18,13 +18,15 @@ describe('Extract Test:', () => {
 		expect(actualContentFromFile).to.be.equal(expectedContentFromFile);
 	});
 
-	it('it should return error - TypeError: path must be a string', () =>{
-		expect(() => {extract.readInputFile()}).to.throw(TypeError);
+	it('it should return ERROR', () =>{
+		var readInputFile = () => {extract.readInputFile()};
+		expect(readInputFile).to.throw(Error);
 	});
 
-	it('it should return error - Error: ENOENT file not found', () =>{
+	it('it should return ERROR - Error: ENOENT file not found', () =>{
 		var inexistentFilePath = '/test/inexistentFile.dat';
 		
-		expect(function(){extract.readInputFile(inexistentFilePath)}).to.throws(Error);
+		var readInputFile = ()=>{extract.readInputFile(inexistentFilePath)};
+		expect(readInputFile).to.throws(Error);
 	});
 });

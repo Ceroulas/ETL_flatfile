@@ -21,7 +21,9 @@
     "sinon": "^1.17.5"
   },
   "dependencies": {
+    "immutable": "^3.8.1",
     "linebyline": "^1.3.0",
+    "log": "^1.4.0",
     "readline": "^1.3.0",
     "valid-filename": "^1.1.1",
     "validate.js": "^0.10.0"

@@ -1,34 +1,53 @@
 'use strict';
 
-var mocha = require('mocha');
-var sinon = require('sinon');
-var fs = require('fs');
-var chai = require('chai');
-var expect = chai.expect;
+const mocha = require('mocha');
+const fs = require('fs');
+const chai = require('chai');
+const expect = chai.expect;
 
-var load = require('./../../../load/writefile.js');
-var structResumeOfFile = require('./../../../transform/prepareinfoforoutput.js');
-var outputFilePath = __dirname+'/../../resources/test.done.dat';
+const load = require('./../../../load/writefile.js');
+const outputFilePath = __dirname+'/../../resources/test.done.dat';
+
 
 describe('Write file Test:', () => {
 
-	it('Should write file in the output directory', () =>{
-		
-		sinon.stub(structResumeOfFile, 'prepareInfoForLoad', function(){
-			return {
-				costumerCount: '3', 
-				salesmanCount: '4',
-				worstSalesman: 'Joaozinho',
-				highestSale: '10000'
-			};	
-		});
+	it('Should write file in the output directory', () =>{	
+		var resumedFileStruct = {
+			costumerCount: 2,
+			salesmanCount: 6,
+			worstSalesman: 'Jonathan',
+			highestSale: 10000
+		};
 
-		load.writeFileInOutPutFolder(outputFilePath);
-
-    	sinon.assert.calledOnce(structResumeOfFile.prepareInfoForLoad); 
-    	structResumeOfFile.prepareInfoForLoad.restore();
+		load.writeFileInOutputFolder(outputFilePath, resumedFileStruct);
 
     	expect(fs.existsSync(outputFilePath)).to.be.equal(true); 					
 	});
 
+	it('Should throw ERROR no path file sent.', () =>{	
+		var resumedFileStruct = {
+			costumerCount: 2,
+			salesmanCount: 6,
+			worstSalesman: 'Jonathan',
+			highestSale: 10000
+		};
+
+		var loadInfoToFile = ()=>{load.writeFileInOutputFolder(resumedFileStruct)};
+
+    	expect(loadInfoToFile).to.throw(Error); 					
+	});
+
+	it('Should throw ERROR no struct sent.', () =>{	
+
+		var loadInfoToFile = ()=>{load.writeFileInOutputFolder(outputFilePath)};
+
+    	expect(loadInfoToFile).to.throw(Error); 					
+	});
+
+	it('Should throw ERROR no struct or file sent.', () =>{	
+
+		var loadInfoToFile = ()=>{load.writeFileInOutputFolder()};
+
+    	expect(loadInfoToFile).to.throw(Error); 					
+	});
 });

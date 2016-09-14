@@ -12,7 +12,9 @@ describe('Parse File Validator Test:', () => {
 		var lineSeparator = 'ç';
 		var lineToValidate = '001ç1234567891234çDiegoç50000';
 
-		expect(transform.validateLineSeparator(lineToValidate, lineSeparator)).to.be.equal(true);
+		var validateSeparator = transform.validateLineSeparator(lineToValidate, lineSeparator);
+
+		expect(validateSeparator).to.be.equal(true);
 	});
 
 	it('it should return true: Id and documentCode have only digits', () =>{
@@ -23,10 +25,12 @@ describe('Parse File Validator Test:', () => {
 			thirdInfo: '50000'
 		};	
 
-		expect(transform.validateElementsFromParsedLine(contentFromExtract)).to.be.equal(true);
+		var validateSeparator = transform.validateElementsFromParsedLine(contentFromExtract);
+		expect(validateSeparator).to.be.equal(true);
 	});
 
 	it('it should return ERROR: document code have chars', () =>{
+		var messageError = 'Document code needs to have only digits!';
 		var contentFromExtract = {
 			id: '001',
 			documentCode: '1234567xxxx891234',
@@ -34,7 +38,8 @@ describe('Parse File Validator Test:', () => {
 			thirdInfo: '50000'
 		};
 
-		expect(()=>{transform.validateElementsFromParsedLine(contentFromExtract)}).to.throw(Error, 'Document code needs to have only digits!');
+		var validateSeparator = ()=>{transform.validateElementsFromParsedLine(contentFromExtract)};
+		expect(validateSeparator).to.throw(Error, messageError);
 	});
 
 	it('it should return ERROR: ID code have chars', () =>{
@@ -45,22 +50,27 @@ describe('Parse File Validator Test:', () => {
 			thirdInfo: '50000'
 		};
 
-		expect(()=>{transform.validateElementsFromParsedLine(contentFromExtract)}).to.throw(Error,'ID needs to have only digits!');
+		var validateSeparator = ()=>{transform.validateElementsFromParsedLine(contentFromExtract)};
+		expect(validateSeparator).to.throw(Error,'ID needs to have only digits!');
 	});
 
 	it('it should return ERROR: more than 3 line separators', () =>{
 		var lineSeparator = 'ç';
 		var lineToValidate = '001ç1234ç5678912ç34çDiegoç50000';
+		var messageError  = 'More number of line separators than possible!';
 
-		expect(()=>{transform.validateLineSeparator(lineToValidate, lineSeparator)}).to.throw(Error, 'More number of line separators than possible!');
+		var validateSeparator = ()=>{transform.validateLineSeparator(lineToValidate, lineSeparator)};
+		expect(validateSeparator).to.throw(Error, messageError);
 	});	
 
 	it('it should return ERROR: not enough line separators', () =>{
 		var lineSeparator = 'ç';
 		var numPossiblesLineSeparators = 3;
 		var lineToValidate = '0011234567891234çDiegoç50000';
+		var messageError = 'Not enough line separators! Should be: '+ numPossiblesLineSeparators;
 
-		expect(()=>{transform.validateLineSeparator(lineToValidate, lineSeparator)}).to.throw(Error, 'Not enough line separators! Should be: '+ numPossiblesLineSeparators);
+		var validateSeparator = ()=>{transform.validateLineSeparator(lineToValidate, lineSeparator)};
+		expect(validateSeparator).to.throw(Error, messageError);
 	});
 
 });

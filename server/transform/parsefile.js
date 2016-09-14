@@ -12,55 +12,52 @@ const SEPARATOR_OF_FIELDS_FOR_LINE = 'ç';
 const SALE_ID = '003';
 const POSITION_IN_SPLIT_FOR_ID = 0;
 const POSITION_IN_SPLIT_FOR_DOC_CODE = 1;
-const POSITION_IN_SPLIT_FOR_NAME = 2;
-const POSITION_IN_SPLIT_FOR_SALE_INFO = 2;
-const POSITION_IN_SPLIT_FOR_SALESMAN_NAME = 3;
-const POSITION_IN_SPLIT_FOR_3TH_INFO = 3;
+const POSITION_IN_SPLIT_FOR_3TH_ITEM = 2;
+const POSITION_IN_SPLIT_FOR_4TH_ITEM = 3;
 
 module.exports = {
 
-	parseLinesFromInputFile: function(contentFromFile){
+	parseLinesFromInputFile: function (contentFromFile) {
 		try{
-			var contentFromFileSplittedInLines = lineSeparator(contentFromFile);
-			var structLineParsed = '';
-			contentFromFileSplittedInLines.forEach(function(line){
-				if(parseFileValidator.validateLineSeparator(line, SEPARATOR_OF_FIELDS_FOR_LINE)){
-					structLineParsed = createStructFromSeparatingElementsFromLine(line);
+			
+				var stringSplittedInLines = lineSeparator(contentFromFile);
+				if(parseFileValidator.validateString(stringSplittedInLines, SEPARATOR_OF_FIELDS_FOR_LINE )){
+					var linesParsed = separateDifferentElementsFromLine(stringSplittedInLines);
 
-					if(parseFileValidator.validateElementsFromParsedLine(structLineParsed))
-						fillRegisters.selectWhatRegisterToFill(structLineParsed);
-				}
-			});
-			writeFile.writeFileInOutPutFolder(outputFilePath);
+					var structOfLinesParsed = createStructFromElementsFromLine(linesParsed);
+
+					return structOfLinesParsed;
+			}
 		}catch(err){
 			throw err;
 		}
-		return structLineParsed;
 	}
 }
 
-function lineSeparator(contentFromFile){
+var lineSeparator = function (contentFromFile) {
 	return contentFromFile.split(NEWLINE_SEPARATOR_FROM_FILE);	
 }
 
-function separateDifferentElementsFromLine(inputLine){
-	return inputLine.split(SEPARATOR_OF_FIELDS_FOR_LINE);
+var separateDifferentElementsFromLine = function (linesFromInputFile) {
+	var linesParsed = [];
+	linesFromInputFile.forEach( function (line) {
+		linesParsed.push(line.split(SEPARATOR_OF_FIELDS_FOR_LINE)); 
+	});
+	return linesParsed;
 }
 
-function createStructFromSeparatingElementsFromLine(inputLine){
-	var lineParsed = separateDifferentElementsFromLine(inputLine);
-	if(lineParsed[POSITION_IN_SPLIT_FOR_ID] == SALE_ID)
-		return {
-			id: lineParsed[POSITION_IN_SPLIT_FOR_ID],
-			documentCode: lineParsed[POSITION_IN_SPLIT_FOR_DOC_CODE],
-			saleInfo: lineParsed[POSITION_IN_SPLIT_FOR_SALE_INFO], 
-			salesmanName: lineParsed[POSITION_IN_SPLIT_FOR_SALESMAN_NAME]
-		};
-	else			
-		return {
-			id: lineParsed[POSITION_IN_SPLIT_FOR_ID],
-			documentCode: lineParsed[POSITION_IN_SPLIT_FOR_DOC_CODE],
-			name: lineParsed[POSITION_IN_SPLIT_FOR_NAME], 
-			thirdInfo: lineParsed[POSITION_IN_SPLIT_FOR_3TH_INFO]
-		};
+var createStructFromElementsFromLine = function (linesParsed) {
+	var structOfLinesParsed = [];
+	linesParsed.forEach( function(line) {
+		structOfLinesParsed.push( {
+			id: line[POSITION_IN_SPLIT_FOR_ID],
+			documentCode: line[POSITION_IN_SPLIT_FOR_DOC_CODE],
+			thirdItem: line[POSITION_IN_SPLIT_FOR_3TH_ITEM], 
+			fourthItem: line[POSITION_IN_SPLIT_FOR_4TH_ITEM]
+		});
+
+	});
+	return structOfLinesParsed;
 }
+
+

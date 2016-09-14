@@ -5,7 +5,7 @@ var chai = require('chai');
 var expect = chai.expect;
 
 var filePath = __dirname+'/../../resources/test.dat';
-var transform = require('./../../../transform/calculatesale.js');
+var calculateSale = require('./../../../transform/calculatesale.js');
 
 describe('Calculate sale Test:', () => {
 	
@@ -15,13 +15,17 @@ describe('Calculate sale Test:', () => {
 			['2','30','2.50'],
 			['3','40','3.10']
 		];
-		var expectedResultFromCalation = 1199; 	   					
-	
-		expect(transform.retrieveBalanceOfSales(stringSaleToCalculate)).to.be.equal(expectedResultFromCalation);
+		var expectedResult = 1199; 	   					
+		
+		var balanceOfSales = calculateSale.retrieveBalanceOfSales(stringSaleToCalculate);
+		expect(balanceOfSales).to.be.equal(expectedResult);
 	});
 
 	it('it should return TypeError: no data received to calculate balance of sales.', () =>{
-		expect(()=>{transform.retrieveBalanceOfSales()}).to.throw(Error, 'No sale was received to calculate its balance!');
+		var messageError = 'No sale was received to calculate its balance!';
+		
+		var balanceOfSales = ()=>{calculateSale.retrieveBalanceOfSales()};
+		expect(balanceOfSales).to.throw(Error, messageError);
 	});
 
 });

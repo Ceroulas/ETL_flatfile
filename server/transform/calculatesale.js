@@ -4,7 +4,7 @@ const POSITION_OF_ITEM_QUANTITY_SOLD = 1;
 const POSITION_OF_ITEM_PRICE = 2;
 
 module.exports = {
-	retrieveBalanceOfSales: function(stringSaleToCalculate){
+	retrieveBalanceOfSales: function (stringSaleToCalculate) {
 		if( typeof stringSaleToCalculate !== "undefined") {
 			return calculateBalanceOfSales(stringSaleToCalculate);
 		}
@@ -12,7 +12,7 @@ module.exports = {
 	}
 }
 
-function calculateBalanceOfSales(stringSaleToCalculate){
+var calculateBalanceOfSales = function (stringSaleToCalculate) {
 	var balanceOfSaleFromSalesman = 0;
 	stringSaleToCalculate.forEach(function(oneSaleInfo){
 		var quantityXPrice = oneSaleInfo[POSITION_OF_ITEM_QUANTITY_SOLD]*oneSaleInfo[POSITION_OF_ITEM_PRICE];
