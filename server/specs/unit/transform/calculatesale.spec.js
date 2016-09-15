@@ -1,13 +1,13 @@
 'use strict';
 
-var mocha = require('mocha');
-var chai = require('chai');
-var expect = chai.expect;
+const mocha = require('mocha');
+const chai = require('chai');
+const expect = chai.expect;
 
-var filePath = __dirname+'/../../resources/test.dat';
-var calculateSale = require('./../../../transform/calculatesale.js');
+const filePath = __dirname+'/../../resources/test.dat';
+const calculateSale = require('./../../../transform/calculatesale.js');
 
-describe('Calculate sale Test:', () => {
+describe('Transform - Calculate sale Test:', () => {
 	
 	it('it should return the expected balance of sales ', () =>{
 		var stringSaleToCalculate = [

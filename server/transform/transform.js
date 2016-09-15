@@ -25,7 +25,9 @@ function transformFlatFile(contentFromFileRead){
 		var highestSale = calculateInfoFromSale.calculateMostExpensiveSale(arrayOfSalesInputFile);
 		var worstSalesman = calculateInfoFromSale.calculateWorstSalesman(arrayOfSalesInputFile);
 		
-		return prepareInfoForOutput.prepareInfoForLoad(worstSalesman, highestSale);
+		var resumedFileStruct =  prepareInfoForOutput.prepareInfoForLoad(worstSalesman, highestSale);
+
+		return resumedFileStruct;
 	
 	}catch(err){
 		throw err;
@@ -44,6 +46,8 @@ function choiceForFillRegister(item) {
 		case SALE_ID:
 			arrayOfSalesInputFile = fillRegisters.fillSaleRegister(item, arrayOfSalesInputFile);
 			break;
+		default:
+			throw new Error('ID not recognized in System. Verify your file syntax.');	
 	}
 }
 

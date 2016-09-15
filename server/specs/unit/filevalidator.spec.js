@@ -1,10 +1,10 @@
 'use strict';
 
-var mocha = require('mocha');
-var chai = require('chai');
-var expect = chai.expect;
+const mocha = require('mocha');
+const chai = require('chai');
+const expect = chai.expect;
 
-var fileValidator = require('./../../filevalidator.js');
+const fileValidator = require('./../../filevalidator.js');
 
 describe('File Verification Test:', () => {
 

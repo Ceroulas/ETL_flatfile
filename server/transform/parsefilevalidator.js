@@ -7,10 +7,10 @@ const INDEX_OF_DOC_CODE = 1;
 
 module.exports = {
 
-	validateString: function (string, lineSeparatorConst){
+	validateString: function (string, index, lineSeparatorConst){
 		try{
-			var lineSeparatorValidation = validateLineSeparator(string, lineSeparatorConst);
-			var itemsTypeValidation = validateElementsFromParsedLine(string, lineSeparatorConst)
+			var lineSeparatorValidation = validateLineSeparator(string, index, lineSeparatorConst);
+			var itemsTypeValidation = validateElementsFromParsedLine(string, index);
 			
 			return (lineSeparatorValidation && itemsTypeValidation);
 		}catch(err){
@@ -19,25 +19,24 @@ module.exports = {
 	}
 }
 
-//TODO: remove if statements
-function validateLineSeparator (lineToValidate, lineSeparatorConst) {
-	console.log('lineToValidate: '+ lineToValidate);
+function validateLineSeparator (lineToValidate, indexOfLine,lineSeparatorConst) {
 	var lineSeparated = lineToValidate.split(lineSeparatorConst);
 	var countOfLinesSeparator = lineSeparated.length - ONE_COUNT_LINE_SEPARATOR;
 
-	if( countOfLinesSeparator === NUM_POSSIBLES_LINE_SEPARATORS_IN_LINE)
-		return validateElementsFromParsedLine(lineSeparated);
-	else 
-		throw new Error('Number of line separators is wrong! Should be: '+ NUM_POSSIBLES_LINE_SEPARATORS_IN_LINE);
+	if( countOfLinesSeparator !== NUM_POSSIBLES_LINE_SEPARATORS_IN_LINE)
+		throw new Error('Line: '+(indexOfLine+1)+' - Number of line separators is wrong! Should be: '+ NUM_POSSIBLES_LINE_SEPARATORS_IN_LINE);
+	
+	return validateElementsFromParsedLine(lineSeparated);		
 }
 
-//TODO: remove if statements
-function validateElementsFromParsedLine (string) {
-	if(validateID(string[INDEX_OF_ID]))
-	   if(validateDocumentCode(string[INDEX_OF_DOC_CODE]))	
-			return true;
-		else throw new Error('Document code needs to have only digits!');
-	else throw new Error('ID needs to have only digits!');
+function validateElementsFromParsedLine (string, indexOfLine) {
+	if(!validateID(string[INDEX_OF_ID])){
+		throw new Error('Line: '+(indexOfLine+1)+' - ID needs to have only digits!');
+	}
+	if(!validateDocumentCode(string[INDEX_OF_DOC_CODE])){	
+		throw new Error('Line: '+(indexOfLine+1)+' - Document code needs to have only digits!');
+	}	
+	return true;
 }
 
 function validateDocumentCode (documentCode) {

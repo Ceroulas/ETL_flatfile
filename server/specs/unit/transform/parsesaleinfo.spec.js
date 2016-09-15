@@ -1,13 +1,13 @@
 'use strict';
 
-var mocha = require('mocha');
-var chai = require('chai');
-var expect = chai.expect;
+const mocha = require('mocha');
+const chai = require('chai');
+const expect = chai.expect;
+const transform = require('./../../../transform/parsesaleinfo.js');
 
-var filePath = __dirname+'/../../resources/test.dat';
-var transform = require('./../../../transform/parsesaleinfo.js');
+const filePath = __dirname+'/../../resources/test.dat';
 
-describe('Parse Sale Info Test:', () => {
+describe('Transform - Parse Sale Info Test:', () => {
 	
 	it('it should return the expect sale string parsed.', () =>{
 		var stringSaleUnparsed = '[1-10-100,2-30-2.50,3-40-3.10]';

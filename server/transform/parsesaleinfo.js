@@ -4,27 +4,29 @@ const SEPARATOR_FOR_EACH_SALE = ',';
 const SEPARATOR_ITEMS_FROM_EACH_SALE = '-';
 
 module.exports = {
-	parseSaleInfo: function (stringSaleUnparsed) {
+	parseSaleInfo: function (stringUnparsed) {
 		try {
-			return removeTraceFromEachSale(stringSaleUnparsed);
+				var bracketsRemoved = removeBracketsfromString(stringUnparsed);
+				var eachSaleSeparated = separateItemsFromString(bracketsRemoved);
+
+				return removeTraceFromEachSale(eachSaleSeparated);
 		}catch(err){
 			throw err;
 		}
 	}
 }
 
-var removeBracketsfromSaleString = function (stringSaleUnparsed) {
-	return stringSaleUnparsed.replace(/[\[\]]+/g, '');
+function removeBracketsfromString (stringUnparsed) {
+	return stringUnparsed.replace(/[\[\]]+/g, '');
 }
 
-var separateEachSaleFromString = function (stringSaleUnparsed) {
-	return removeBracketsfromSaleString(stringSaleUnparsed).split(SEPARATOR_FOR_EACH_SALE);
+function separateItemsFromString (stringUnparsed) {
+	return stringUnparsed.split(SEPARATOR_FOR_EACH_SALE);
 }
 
-var removeTraceFromEachSale = function (stringSaleUnparsed) {
-	var eachSaleSeparated = separateEachSaleFromString(stringSaleUnparsed);
+function removeTraceFromEachSale (arrOfString) {
 	var saleInfoWithoutTraces = [];
-	eachSaleSeparated.forEach((item)=>{
+	arrOfString.forEach((item)=>{
 		saleInfoWithoutTraces.push(item.split(SEPARATOR_ITEMS_FROM_EACH_SALE));
 	})
 	return saleInfoWithoutTraces;

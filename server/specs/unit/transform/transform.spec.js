@@ -1,13 +1,15 @@
 'use strict';
 
-var mocha = require('mocha');
-var chai = require('chai');
-var expect = chai.expect;
+const mocha = require('mocha');
+const sinon = require('sinon');
+require('mocha-sinon');
+const chai = require('chai');
+const expect = chai.expect;
 
-var transform = require('./../../../transform/transform.js');
+const transform = require('./../../../transform/transform.js');
 
-describe('Parse file Test:', () => {
-	
+describe('Transform Test:', () => {
+
 	it('it should return struct of line parsed readed from file', () =>{
 		var contentFromFile = '001ç1234567891234çDiegoç50000' +'\n'+
 							'002ç2345675434544345çJosedaSilvaçRural' +'\n'+
@@ -28,29 +30,39 @@ describe('Parse file Test:', () => {
 		expect(structOfSeparatedLines.highestSale).to.be.equal(expectedResumeFileStruct.highestSale);
 	});
 
-	/*it('it should return Error: ID needs to have only digits!', () =>{
+	it('it should return Error: ID needs to have only digits!', () =>{
 		var contentFromFile = '0xx01ç1234567891234çDiegoç50000';
 		var messageError = 'ID needs to have only digits!';
 
-		var parsedLines = ()=>{transform.parseLinesFromInputFile(contentFromFile)};
-		expect(parsedLines).to.throw(Error, messageError);
+		var resultFromTransform = ()=>{transform.transformFlatFile(contentFromFile)};
+		expect(resultFromTransform).to.throw(Error, messageError);
 	});
 
 	it('it should return Error: Not enough line separators!', () =>{
 		var contentFromFile = '0011234567891234çDiegoç50000';
-		var messageError = 'Not enough line separators! Should be: 3'; 
+		var messageError = 'Number of line separators is wrong! Should be: 3'; 
 
-		var parsedLines = ()=>{transform.parseLinesFromInputFile(contentFromFile)};
-		expect(parsedLines).to.throw(Error, messageError);
+		var resultFromTransform = ()=>{transform.transformFlatFile(contentFromFile)};
+		expect(resultFromTransform).to.throw(Error, messageError);
 	});
 
 	it('it should return Error: Document code needs to have only digits!', () =>{
 		var contentFromFile = '001ç12345xxx67891234çDiegoç50000';
 		var messageError = 'Document code needs to have only digits!';
 
-		var parsedLines = ()=>{transform.parseLinesFromInputFile(contentFromFile)};
-		expect(parsedLines).to.throw(Error, messageError);
-	});*/
+		var resultFromTransform = ()=>{transform.transformFlatFile(contentFromFile)};
+		expect(resultFromTransform).to.throw(Error, messageError);
+	});
+
+
+	it('it should report Error: ID not recognized.', function(){
+		var messageError = 'ID not recognized in System. Verify your file syntax.';
+		var contentFromFile = '004ç1234567891234çDiegoç50000';
+		
+		var resultFromTransform = ()=>{transform.transformFlatFile(contentFromFile)};
+
+    	expect(resultFromTransform).to.throw(Error, messageError);
+	});
 
 	it('it should return TypeError: no data received from Extract', () =>{
 

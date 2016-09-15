@@ -3,10 +3,8 @@
 const extract = require('./extract/extract.js');
 const transform = require('./transform/transform.js');
 const load = require('./load/writefile.js');
-const fileValidator = require('./filevalidator.js')
-const fs = require('fs');
-const Log = require('log');
-const log = new Log('info', fs.createWriteStream('etl.log'));
+const fileValidator = require('./filevalidator.js');
+const etlLog = require('./log/etllog.js');
 
 //const inputFilePath = __dirname+'/../data/in/test.dat';
 //const outputFilePath = __dirname+'/../data/out/test.done.dat';
@@ -21,7 +19,7 @@ function flatFileResumer(inputFilePath, outputFilePath) {
 			load.writeFileInOutputFolder(outputFilePath, resumedFileStruct);
 		}
 	}catch(err){
-		log.error(err);
+		etlLog.writeToLog('error', err);
 	}
 		
 }

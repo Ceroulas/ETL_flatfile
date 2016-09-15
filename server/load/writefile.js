@@ -1,6 +1,6 @@
 'use strict';
 
-var fs = require('fs');
+const fs = require('fs');
 
 module.exports = {
 	//TODO: transform to pure function

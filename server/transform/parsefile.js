@@ -1,11 +1,11 @@
 'use strict';
 
-var extract = require('./../extract/extract.js');
-var fillRegisters = require('./fillregisters.js');
-var writeFile = require('./../load/writefile.js');
-var parseFileValidator = require('./parsefilevalidator.js');
+const extract = require('./../extract/extract.js');
+const fillRegisters = require('./fillregisters.js');
+const writeFile = require('./../load/writefile.js');
+const parseFileValidator = require('./parsefilevalidator.js');
 
-var outputFilePath = __dirname+'/../../data/out/test.done.dat';
+const outputFilePath = __dirname+'/../../data/out/test.done.dat';
 
 const NEWLINE_SEPARATOR_FROM_FILE = '\n';
 const SEPARATOR_OF_FIELDS_FOR_LINE = 'ç';
@@ -18,46 +18,47 @@ const POSITION_IN_SPLIT_FOR_4TH_ITEM = 3;
 module.exports = {
 
 	parseLinesFromInputFile: function (contentFromFile) {
-		try{
-			
-				var stringSplittedInLines = lineSeparator(contentFromFile);
-				if(parseFileValidator.validateString(stringSplittedInLines, SEPARATOR_OF_FIELDS_FOR_LINE )){
-					var linesParsed = separateDifferentElementsFromLine(stringSplittedInLines);
-
-					var structOfLinesParsed = createStructFromElementsFromLine(linesParsed);
-
-					return structOfLinesParsed;
-			}
+		try{		
+			var stringSplittedInLines = lineSeparator(contentFromFile);
+			return parsedFileStruct(stringSplittedInLines);	
+		
 		}catch(err){
 			throw err;
 		}
 	}
 }
 
-var lineSeparator = function (contentFromFile) {
+function parsedFileStruct (stringSplittedInLines) {
+	var structOfLinesParsed = [];
+	
+	stringSplittedInLines.forEach(function(line, index){
+		if(parseFileValidator.validateString(line, index, SEPARATOR_OF_FIELDS_FOR_LINE))
+			structOfLinesParsed.push(parseLine(line));	
+	});
+
+	return structOfLinesParsed;
+}
+
+function parseLine (line) {
+	var lineParsed = separateDifferentElementsFromLine(line);
+	return createStructFromElementsFromLine(lineParsed);
+}
+
+function lineSeparator (contentFromFile) {
 	return contentFromFile.split(NEWLINE_SEPARATOR_FROM_FILE);	
 }
 
-var separateDifferentElementsFromLine = function (linesFromInputFile) {
-	var linesParsed = [];
-	linesFromInputFile.forEach( function (line) {
-		linesParsed.push(line.split(SEPARATOR_OF_FIELDS_FOR_LINE)); 
-	});
-	return linesParsed;
+function separateDifferentElementsFromLine (line) {
+	return line.split(SEPARATOR_OF_FIELDS_FOR_LINE);
 }
 
-var createStructFromElementsFromLine = function (linesParsed) {
-	var structOfLinesParsed = [];
-	linesParsed.forEach( function(line) {
-		structOfLinesParsed.push( {
-			id: line[POSITION_IN_SPLIT_FOR_ID],
-			documentCode: line[POSITION_IN_SPLIT_FOR_DOC_CODE],
-			thirdItem: line[POSITION_IN_SPLIT_FOR_3TH_ITEM], 
-			fourthItem: line[POSITION_IN_SPLIT_FOR_4TH_ITEM]
-		});
-
-	});
-	return structOfLinesParsed;
+function createStructFromElementsFromLine (lineParsed) {
+	return {
+		id: lineParsed[POSITION_IN_SPLIT_FOR_ID],
+		documentCode: lineParsed[POSITION_IN_SPLIT_FOR_DOC_CODE],
+		thirdItem: lineParsed[POSITION_IN_SPLIT_FOR_3TH_ITEM], 
+		fourthItem: lineParsed[POSITION_IN_SPLIT_FOR_4TH_ITEM]
+	};
 }
 
 

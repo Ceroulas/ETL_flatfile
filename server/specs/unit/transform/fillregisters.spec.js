@@ -1,13 +1,16 @@
 'use strict';
 
-var mocha = require('mocha');
-var sinon = require('sinon');
+const mocha = require('mocha');
+const sinon = require('sinon');
 require('mocha-sinon');
-var rewire = require('rewire');
-var chai = require('chai');
-var expect = chai.expect;
+const fs  = require('fs');
+const sleep = require('sleep');
+const rewire = require('rewire');
+const chai = require('chai');
+const expect = chai.expect;
 
-var fillRegisters = rewire('./../../../transform/fillregisters.js');
+const fillRegisters = rewire('./../../../transform/fillregisters.js');
+const logPath = __dirname+'/../../../etl.log';
 
 describe('Fill registers tests:', function(){
 
@@ -16,6 +19,18 @@ describe('Fill registers tests:', function(){
     	this.sinon.stub(console, 'error');
   	});
 
+  	afterEach(function(){
+  		fillRegisters.__set__("Costumer.count", 0);
+  		fillRegisters.__set__("Salesman.count", 0);
+  	});
+
+  	function ReadLog (logPath){
+        var contentFromLog = fs.readFileSync(logPath).toString();
+        var lines = contentFromLog.trim().split('\n');
+       
+        return lines.pop();
+    }
+
 	it('it should insert a costumer in array', function(){
 		var contentFromFileParse = 	{
 			id: '002',
@@ -23,10 +38,10 @@ describe('Fill registers tests:', function(){
 			thirdItem: 'Diego', 
 			fourthItem: 'agricola'
 		};
-
-		fillRegisters.selectWhatRegisterToFill(contentFromFileParse);
-
-		expect(fillRegisters.__get__("arrayOfCostumersInputFile").length).to.equal(1);	
+		var arrCostumer = [];
+		arrCostumer = fillRegisters.fillCostumerRegister(contentFromFileParse, arrCostumer);
+		
+		expect(arrCostumer.length).to.equal(1);	
 	})
 
 	it('it should insert a salesman in array', function(){
@@ -37,9 +52,10 @@ describe('Fill registers tests:', function(){
 			fourthItem: '50000'
 		};
 
-		fillRegisters.selectWhatRegisterToFill(contentFromFileParse);
+		var arrSalesman = [];
+		arrSalesman = fillRegisters.fillSalesmanRegister(contentFromFileParse, arrSalesman);
 
-		expect(fillRegisters.__get__("arrayOfSalesmansInputFile").length).to.equal(1);	
+		expect(arrSalesman.length).to.equal(1);		
 	})
 
 	it('it should insert a sale in array', function(){
@@ -50,9 +66,10 @@ describe('Fill registers tests:', function(){
 			fourthItem: 'Diego'
 		};
 
-		fillRegisters.selectWhatRegisterToFill(contentFromFileParse);
+		var arrSale = [];
+		arrSale = fillRegisters.fillSaleRegister(contentFromFileParse, arrSale);
 
-		expect(fillRegisters.__get__("arrayOfSalesInputFile").length).to.equal(1);	
+		expect(arrSale.length).to.equal(1);	
 	})
 
 	it('it should report Info on console: costumer already registered.', function(){
@@ -62,54 +79,31 @@ describe('Fill registers tests:', function(){
 			thirdItem: 'existentUser', 
 			fourthItem: 'agricola'
 		};
-		var costumerAlreadyInArray = 	{
-			id: '002',
-			documentCode: '1111111111',
-			thirdItem: 'existentUser', 
-			fourthItem: 'agricola'
-		};
+		var messageInfo = 'Costumer "existentUser" already in register.';
 		
-		fillRegisters.selectWhatRegisterToFill(costumerToInsertInArray);
-		fillRegisters.selectWhatRegisterToFill(costumerAlreadyInArray);
+		var arrCostumer = [];
+		arrCostumer = fillRegisters.fillCostumerRegister(costumerToInsertInArray, arrCostumer);
+		arrCostumer = fillRegisters.fillCostumerRegister(costumerToInsertInArray, arrCostumer);
 				
-		expect(console.info.calledOnce).to.be.true;
-    	expect(console.info.calledWith('Costumer already in register.')).to.be.true;	
+		var lastLineFromLog = ReadLog(logPath);
+        expect(lastLineFromLog.search(messageInfo)).to.not.equal(-1);
 	})
 
 	it('it should report Info on console: salesman already registered.', function(){
-		var costumerToInsertInArray = 	{
+		var salesmanToInsertInArray = 	{
 			id: '001',
 			documentCode: '2222222222',
 			thirdItem: 'existentSalesman', 
 			fourthItem: '20000'
 		};
-		var costumerAlreadyInArray = 	{
-			id: '001',
-			documentCode: '2222222222',
-			thirdItem: 'existentSalesman', 
-			fourthItem: '20000'
-		};
+		var messageInfo = 'Salesman "existentSalesman" already in register.';
 		
-		fillRegisters.selectWhatRegisterToFill(costumerToInsertInArray);
-		fillRegisters.selectWhatRegisterToFill(costumerAlreadyInArray);
-				
-		expect(console.info.calledOnce).to.be.true;
-    	expect(console.info.calledWith('Salesman already in register.')).to.be.true;	
-	})
-
-
-	it('it should report Error: ID not recognized.', function(){
-		var messageError = 'ID not recognized in System. Verify your file syntax.';
-		var contentFromFileParse = 	{
-			id: '004',
-			documentCode: '123456789',
-			thirdItem: 'Teste', 
-			fourthItem: '50000'
-		};
-		
-		fillRegisters.selectWhatRegisterToFill(contentFromFileParse);
-
-    	expect(console.error.calledOnce).to.be.true;
-    	expect(console.error.calledWith(messageError)).to.be.true;
+		var arrSalesman = [];
+		arrSalesman = fillRegisters.fillSalesmanRegister(salesmanToInsertInArray, arrSalesman);
+		arrSalesman = fillRegisters.fillSalesmanRegister(salesmanToInsertInArray, arrSalesman);
+	
+		sleep.usleep(50);
+		var lastLineFromLog = ReadLog(logPath);
+        expect(lastLineFromLog.search(messageInfo)).to.not.equal(-1);		
 	})
 })

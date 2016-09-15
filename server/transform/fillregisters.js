@@ -1,36 +1,40 @@
 'use strict';
 
-var Immutable = require('immutable');
-var parseSaleInfo = require('./parsesaleinfo.js');
-var calculateSale = require('./calculatesale.js');
-var Costumer = require('./models/costumerregister.js');
-var Salesman = require('./models/salesmanregister.js');
-var Sale = require('./models/saleregister.js');
+const Immutable = require('immutable');
+const parseSaleInfo = require('./parsesaleinfo.js');
+const calculateSale = require('./calculatesale.js');
+const Costumer = require('./models/costumerregister.js');
+const Salesman = require('./models/salesmanregister.js');
+const Sale = require('./models/saleregister.js');
+const etlLog = require('./../log/etllog.js');
 
 const SALESMAN_ID = '001';
 const COSTUMER_ID = '002';
 const SALE_ID = '003';
 
 module.exports = {
-
 	fillCostumerRegister: function (structOfInfosFromLine, arrayFilled) {
-	//if( !findIfExistentInRegister(arrayFilled, structOfInfosFromLine.documentCode)) {
-		var costumerObj = new Costumer(structOfInfosFromLine.documentCode, structOfInfosFromLine.thirdItem, structOfInfosFromLine.fourthItem);
-		arrayFilled.push(costumerObj);
+		if( !findIfExistentInRegister(arrayFilled, structOfInfosFromLine.documentCode)) {
+			var costumerObj = new Costumer(structOfInfosFromLine.documentCode, structOfInfosFromLine.thirdItem, structOfInfosFromLine.fourthItem);
+			arrayFilled.push(costumerObj);
 
-		return arrayFilled;
-	//}
-	//else console.info('Costumer already in register.');
+			return arrayFilled;
+		} else{
+			var messageToLog = 'Costumer "'+ structOfInfosFromLine.thirdItem +'" already in register.';
+			etlLog.writeToLog('info',messageToLog);	
+		} 
 	},
 
 	fillSalesmanRegister: function (structOfInfosFromLine, arrayFilled) {
-		//if( !findIfExistentInRegister(arrayFilled, structOfInfosFromLine.documentCode)) {
+		if( !findIfExistentInRegister(arrayFilled, structOfInfosFromLine.documentCode)) {
 			var salesmanObj = new Salesman(structOfInfosFromLine.documentCode, structOfInfosFromLine.thirdItem, structOfInfosFromLine.fourthItem);
 			arrayFilled.push(salesmanObj);
 
 			return arrayFilled;
-		//}
-		//else console.info('Salesman already in register.');	
+		}else {
+			var messageToLog = 'Salesman "'+structOfInfosFromLine.thirdItem +'" already in register.';
+			etlLog.writeToLog('info', messageToLog);	
+		}	
 	},
 
 	fillSaleRegister: function (structOfInfosFromLine, arrayFilled) {
@@ -43,9 +47,7 @@ module.exports = {
 	}	
 }
 
-
-
-var findIfExistentInRegister = function (array,findCode) {
+function findIfExistentInRegister (array,findCode) {
 	var isExistentInArray = false;
 	array.forEach(function(item){
 		if(item.documentCode == findCode){

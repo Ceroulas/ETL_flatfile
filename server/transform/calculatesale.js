@@ -5,18 +5,23 @@ const POSITION_OF_ITEM_PRICE = 2;
 
 module.exports = {
 	retrieveBalanceOfSales: function (stringSaleToCalculate) {
-		if( typeof stringSaleToCalculate !== "undefined") {
-			return calculateBalanceOfSales(stringSaleToCalculate);
-		}
-		else throw new Error('No sale was received to calculate its balance!');
+		if( typeof stringSaleToCalculate === "undefined") 
+			throw new Error('No sale was received to calculate its balance!');
+		
+		return calculateBalanceOfSales(stringSaleToCalculate); 
 	}
 }
 
-var calculateBalanceOfSales = function (stringSaleToCalculate) {
+function calculateBalanceOfSales (stringSaleToCalculate) {
 	var balanceOfSaleFromSalesman = 0;
-	stringSaleToCalculate.forEach(function(oneSaleInfo){
-		var quantityXPrice = oneSaleInfo[POSITION_OF_ITEM_QUANTITY_SOLD]*oneSaleInfo[POSITION_OF_ITEM_PRICE];
-		balanceOfSaleFromSalesman += quantityXPrice;
-	})
+	
+	stringSaleToCalculate.forEach(function(element){
+		balanceOfSaleFromSalesman += multiplyValues(element);
+	});
+
 	return balanceOfSaleFromSalesman;
+}
+
+function multiplyValues(element){
+	return element[POSITION_OF_ITEM_QUANTITY_SOLD]*element[POSITION_OF_ITEM_PRICE];;
 }

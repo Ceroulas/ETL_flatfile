@@ -18,10 +18,17 @@ describe('Write file Test:', () => {
 			worstSalesman: 'Jonathan',
 			highestSale: 10000
 		};
+		var expectedfileReaded = "Costumer count: 2"+"\n"+
+								"Salesman count: 6"+"\n"+
+								"Worst salesman ever: Jonathan"+"\n"+
+								"Most expensive sale: 10000";
 
 		load.writeFileInOutputFolder(outputFilePath, resumedFileStruct);
 
-    	expect(fs.existsSync(outputFilePath)).to.be.equal(true); 					
+    	expect(fs.existsSync(outputFilePath)).to.be.equal(true);
+
+    	var fileReaded = fs.readFileSync(outputFilePath).toString();
+    	expect(fileReaded).to.be.equal(expectedfileReaded); 					
 	});
 
 	it('Should throw ERROR no path file sent.', () =>{	

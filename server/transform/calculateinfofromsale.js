@@ -1,6 +1,6 @@
 'use strict';
 
-var fillRegisters = require('./fillregisters.js');
+const fillRegisters = require('./fillregisters.js');
 
 module.exports = {
 	calculateMostExpensiveSale: function (infoFromStructOfLines) {
@@ -13,13 +13,13 @@ module.exports = {
 	}
 }
 
-var mapSalesArray = function (salesArray) {
+function mapSalesArray (salesArray) {
 	return salesArray.map(function(item){
 			return item.balanceOfSales;
 		 });
 }
 
-var findWorstSalesmanInArray = function (salesArray, minSale) {
+function findWorstSalesmanInArray (salesArray, minSale) {
 	var worstSalesmanFound = '';
 	salesArray.forEach(function(item){
 		if(item.balanceOfSales == minSale){	    	
