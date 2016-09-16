@@ -1,6 +1,7 @@
 'use strict';
 
 const fs = require('fs');
+const etlLog = require('./../log/etl-log.js');
 
 module.exports = {
 	//TODO: transform to pure function
@@ -8,7 +9,8 @@ module.exports = {
 		try{
 			fs.writeFileSync(outputFolderPath, fillFieldsToWriteOutputFile(resumedFileStruct));
 		}catch(err){
-			throw err;
+			//etlLog.writeToLog('error', err);
+			throw err
 		}
 	}
 }

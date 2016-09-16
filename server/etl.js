@@ -20,7 +20,8 @@ function flatFileResumer(inputFilePath, outputFilePath) {
 			load.writeFileInOutputFolder(outputFilePath, resumedFileStruct);
 		}
 	}catch(err){
-		etlLog.writeToLog('error', err);
+		//etlLog.writeToLog('error', err);
+		throw err
 	}
 		
 }

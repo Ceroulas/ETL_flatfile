@@ -1,5 +1,7 @@
 'use strict';
 
+const etlLog = require('./../log/etl-log.js');
+
 const SEPARATOR_FOR_EACH_SALE = ',';
 const SEPARATOR_ITEMS_FROM_EACH_SALE = '-';
 
@@ -11,7 +13,8 @@ module.exports = {
 
 				return removeTraceFromEachSale(eachSaleSeparated);
 		}catch(err){
-			throw err;
+			//etlLog.writeToLog('error', err);
+			throw err
 		}
 	}
 }

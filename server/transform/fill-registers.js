@@ -1,7 +1,5 @@
 'use strict';
 
-const parseSaleInfo = require('./parse-sale-info.js');
-const calculateSale = require('./calculate-sale.js');
 const Costumer = require('./models/costumer-register.js');
 const Salesman = require('./models/salesman-register.js');
 const Sale = require('./models/sale-register.js');
@@ -32,11 +30,9 @@ module.exports = {
 		return arrayOfUsers.concat(salesmanObj);	
 	},
 
-	fillSaleRegister: function (structOfInfosFromLine, arrayOfUsers) {
-		var saleInfoParsed = parseSaleInfo.parseSaleInfo(structOfInfosFromLine.thirdItem);
-		var balanceSaleCalculated = calculateSale.retrieveBalanceOfSales(saleInfoParsed);
+	fillSaleRegister: function (structOfInfosFromLine, arrayOfUsers, balanceOfSale) {
 
-		var saleObj = new Sale(structOfInfosFromLine.documentCode, balanceSaleCalculated, structOfInfosFromLine.fourthItem)
+		var saleObj = new Sale(structOfInfosFromLine.documentCode, balanceOfSale, structOfInfosFromLine.fourthItem);
 
 		return arrayOfUsers.concat(saleObj);
 	}	
