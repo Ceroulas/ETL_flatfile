@@ -26,7 +26,7 @@ function separateItemsFromString (stringUnparsed) {
 
 function removeTraceFromEachSale (arrOfString) {
 	var saleInfoWithoutTraces = [];
-	arrOfString.forEach((item)=>{
+	arrOfString.map((item)=>{
 		saleInfoWithoutTraces.push(item.split(SEPARATOR_ITEMS_FROM_EACH_SALE));
 	})
 	return saleInfoWithoutTraces;

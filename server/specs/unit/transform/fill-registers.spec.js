@@ -1,23 +1,16 @@
 'use strict';
 
 const mocha = require('mocha');
-const sinon = require('sinon');
-require('mocha-sinon');
 const fs  = require('fs');
 const sleep = require('sleep');
 const rewire = require('rewire');
 const chai = require('chai');
 const expect = chai.expect;
 
-const fillRegisters = rewire('./../../../transform/fillregisters.js');
+const fillRegisters = rewire('./../../../transform/fill-registers.js');
 const logPath = __dirname+'/../../../etl.log';
 
-describe('Fill registers tests:', function(){
-
-	beforeEach(function() {
-    	this.sinon.stub(console, 'info');
-    	this.sinon.stub(console, 'error');
-  	});
+describe('Transform - Fill registers tests:', function(){
 
   	afterEach(function(){
   		fillRegisters.__set__("Costumer.count", 0);
@@ -84,8 +77,10 @@ describe('Fill registers tests:', function(){
 		var arrCostumer = [];
 		arrCostumer = fillRegisters.fillCostumerRegister(costumerToInsertInArray, arrCostumer);
 		arrCostumer = fillRegisters.fillCostumerRegister(costumerToInsertInArray, arrCostumer);
-				
+		
+		sleep.usleep(50);		
 		var lastLineFromLog = ReadLog(logPath);
+
         expect(lastLineFromLog.search(messageInfo)).to.not.equal(-1);
 	})
 
@@ -104,6 +99,7 @@ describe('Fill registers tests:', function(){
 	
 		sleep.usleep(50);
 		var lastLineFromLog = ReadLog(logPath);
+
         expect(lastLineFromLog.search(messageInfo)).to.not.equal(-1);		
 	})
 })

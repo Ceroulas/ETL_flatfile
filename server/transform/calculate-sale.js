@@ -15,7 +15,7 @@ module.exports = {
 function calculateBalanceOfSales (stringSaleToCalculate) {
 	var balanceOfSaleFromSalesman = 0;
 	
-	stringSaleToCalculate.forEach(function(element){
+	stringSaleToCalculate.map(function(element){
 		balanceOfSaleFromSalesman += multiplyValues(element);
 	});
 

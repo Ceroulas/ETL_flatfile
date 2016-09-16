@@ -4,7 +4,7 @@ const mocha = require('mocha');
 const chai = require('chai');
 const expect = chai.expect;
 
-const fileValidator = require('./../../filevalidator.js');
+const fileValidator = require('./../../file-validator.js');
 
 describe('File Verification Test:', () => {
 

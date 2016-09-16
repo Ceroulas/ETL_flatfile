@@ -3,7 +3,7 @@
 const mocha = require('mocha');
 const chai = require('chai');
 const expect = chai.expect;
-const transform = require('./../../../transform/parsesaleinfo.js');
+const transform = require('./../../../transform/parse-sale-info.js');
 
 const filePath = __dirname+'/../../resources/test.dat';
 

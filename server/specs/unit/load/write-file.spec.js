@@ -5,7 +5,7 @@ const fs = require('fs');
 const chai = require('chai');
 const expect = chai.expect;
 
-const load = require('./../../../load/writefile.js');
+const load = require('./../../../load/write-file.js');
 const outputFilePath = __dirname+'/../../resources/test.done.dat';
 
 

@@ -4,7 +4,7 @@ var mocha = require('mocha');
 var chai = require('chai');
 var expect = chai.expect;
 
-var filePath = __dirname+'/../../resources/extract_success_test.dat';
+var filePath = __dirname+'/../../resources/extract-success-test.dat';
 var extract = require('./../../../extract/extract.js');
 
 describe('Extract Test:', () => {

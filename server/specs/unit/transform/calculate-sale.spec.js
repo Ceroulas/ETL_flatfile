@@ -5,7 +5,7 @@ const chai = require('chai');
 const expect = chai.expect;
 
 const filePath = __dirname+'/../../resources/test.dat';
-const calculateSale = require('./../../../transform/calculatesale.js');
+const calculateSale = require('./../../../transform/calculate-sale.js');
 
 describe('Transform - Calculate sale Test:', () => {
 	

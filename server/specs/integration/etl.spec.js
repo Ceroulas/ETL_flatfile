@@ -28,7 +28,7 @@ describe('Extract-Transform-Load Test:', () => {
 	});
 
     it('it should return ERROR: more line separator', () =>{
-		var inputFilePath = __dirname+'/../resources/more_separator.dat';
+		var inputFilePath = __dirname+'/../resources/more-separator.dat';
         var outputFilePath = __dirname+'/../../../data/out/test.done.dat';
         var logPath = __dirname+'/../../etl.log';
         var messageError = 'Number of line separators is wrong! Should be: 3';
@@ -41,7 +41,7 @@ describe('Extract-Transform-Load Test:', () => {
 	});
     
     it('it should return ERROR: not enough line separator', () =>{
-		var inputFilePath = __dirname+'/../resources/not_enough_separator.dat';
+		var inputFilePath = __dirname+'/../resources/not-enough-separator.dat';
         var outputFilePath = __dirname+'/../../../data/out/test.done.dat';
         var messageError = 'Number of line separators is wrong! Should be: 3';
         
@@ -52,7 +52,7 @@ describe('Extract-Transform-Load Test:', () => {
 	});
 
     it('it should return ERROR: Not a .dat file', () =>{
-		var inputFilePath = __dirname+'/../resources/not_dat.txt';
+		var inputFilePath = __dirname+'/../resources/not-dat.txt';
         var outputFilePath = __dirname+'/../../../data/out/test.done.dat';
         var messageError = 'Not a .dat file!';
         

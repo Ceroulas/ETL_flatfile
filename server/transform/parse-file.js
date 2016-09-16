@@ -1,15 +1,12 @@
 'use strict';
 
 const extract = require('./../extract/extract.js');
-const fillRegisters = require('./fillregisters.js');
-const writeFile = require('./../load/writefile.js');
-const parseFileValidator = require('./parsefilevalidator.js');
-
-const outputFilePath = __dirname+'/../../data/out/test.done.dat';
+const fillRegisters = require('./fill-registers.js');
+const writeFile = require('./../load/write-file.js');
+const parseFileValidator = require('./parse-file-validator.js');
 
 const NEWLINE_SEPARATOR_FROM_FILE = '\n';
 const SEPARATOR_OF_FIELDS_FOR_LINE = 'ç';
-const SALE_ID = '003';
 const POSITION_IN_SPLIT_FOR_ID = 0;
 const POSITION_IN_SPLIT_FOR_DOC_CODE = 1;
 const POSITION_IN_SPLIT_FOR_3TH_ITEM = 2;
@@ -31,7 +28,7 @@ module.exports = {
 function parsedFileStruct (stringSplittedInLines) {
 	var structOfLinesParsed = [];
 	
-	stringSplittedInLines.forEach(function(line, index){
+	stringSplittedInLines.map(function(line, index){
 		if(parseFileValidator.validateString(line, index, SEPARATOR_OF_FIELDS_FOR_LINE))
 			structOfLinesParsed.push(parseLine(line));	
 	});

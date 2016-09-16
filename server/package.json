@@ -4,8 +4,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "nodemon": "nodemon server.js",
-    "start": "npm run nodemon",
+    "start": "node etl.js",
     "unit-test": "mocha --recursive specs/unit/",
     "integration-test": "mocha specs/integration/*.spec.js",
     "test": "npm run unit-test && npm run integration-test"

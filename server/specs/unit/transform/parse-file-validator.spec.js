@@ -4,7 +4,7 @@ const mocha = require('mocha');
 const chai = require('chai');
 const expect = chai.expect;
 
-const parseValidator = require('./../../../transform/parsefilevalidator.js');
+const parseValidator = require('./../../../transform/parse-file-validator.js');
 
 describe('Transform - Parse File Validator Test:', () => {
 	
