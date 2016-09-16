@@ -12,6 +12,7 @@ module.exports = {
 				break;
 			case 'warning':
 				log.warn(message);	
+				break;
 			default:
 				log.info(message);
 		}
