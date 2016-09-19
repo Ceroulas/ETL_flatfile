@@ -1,8 +1,17 @@
 'use strict';
 
 const fillRegisters = require('./fill-registers.js');
+const calculateSale = require('./calculate-sale.js');
+const parseSaleInfo = require('./parse-sale-info.js');
 
 module.exports = {
+
+	totalSaleFromSalesman: function (saleUnparsed){
+		var saleInfoParsed = parseSaleInfo.parseSaleInfo(saleUnparsed);
+
+		return calculateSale.retrieveBalanceOfSales(saleInfoParsed);
+	},	
+
 	calculateMostExpensiveSale: function (infoFromStructOfLines) {
 		return Math.max.apply(null, mapSalesArray(infoFromStructOfLines));
 	},

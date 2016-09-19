@@ -27,12 +27,13 @@ describe('Extract-Transform-Load Test:', () => {
         expect(fs.existsSync(outputFilePath)).to.be.equal(true);
 	});
 
-    /*it('it should return ERROR: more line separator', () =>{
+    it('it should return ERROR: more line separator', () =>{
 		var inputFilePath = __dirname+'/../resources/more-separator.dat';;
         var logPath = __dirname+'/../../etl.log';
         var messageError = 'Number of line separators is wrong! Should be: 3';
         
         var readInputFile = etl.flatFileResumer(inputFilePath, outputFilePath); 
+        sleep.usleep(50);
         var lastLineFromLog = ReadLog(logPath);
 
         expect(lastLineFromLog.search(messageError)).to.not.equal(-1);
@@ -44,6 +45,7 @@ describe('Extract-Transform-Load Test:', () => {
         var messageError = 'Number of line separators is wrong! Should be: 3';
         
         var readInputFile = etl.flatFileResumer(inputFilePath, outputFilePath);       
+        sleep.usleep(50);
         var lastLineFromLog = ReadLog(logPath);
 
         expect(lastLineFromLog.search(messageError)).to.not.equal(-1);
@@ -69,5 +71,5 @@ describe('Extract-Transform-Load Test:', () => {
         var lastLineFromLog = ReadLog(logPath);
 
         expect(lastLineFromLog.search(messageError)).to.not.equal(-1);
-    });*/
+    });
 });

@@ -9,8 +9,7 @@ module.exports = {
 		try {
 			return fs.readFileSync(inputFilePath).toString();			
 		} catch (err) {
-			//etlLog.writeToLog('error', err);
-			throw err
+			etlLog.writeToLog('error', err);
 		}
 	}
 }

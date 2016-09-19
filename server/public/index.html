@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html ng-app="uploadApp">
+<head>
+    <base href="/">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <title>Upload File App</title>
+</head>
+<body ng-controller="UploadController">
+    <!-- HEADER AND NAVBAR -->
+    <header>
+        <nav class="navbar navbar-default">
+            <div class="container">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#/">Upload File App</a>
+                </div>
+
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#/"><i class="fa fa-home"></i> Upload</a></li>
+                    <li><a href="#/log"><i class="fa fa-shield"></i> Log</a></li>
+                    <li><a href="#/report"><i class="fa fa-comment"></i> Report</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <div id="main">
+        <div ng-view></div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js" type="text/javascript"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-route.min.js" type="text/javascript"></script>
+    <script src="app.module.js" type="text/javascript"></script>
+    <script src="app.config.js" type="text/javascript"></script>
+    <script src="upload-file/upload-file.controller.js" type="text/javascript"></script>
+    <script src="upload-file/upload-file.service.js" type="text/javascript"></script>
+    <script src="upload-file/verify-dat-file.service.js" type="text/javascript"></script>
+    <script src="upload-file/upload-file.directive.js" type="text/javascript"></script>
+    <script src="logger/log.controller.js" type="text/javascript"></script>
+    <script src="report/report.controller.js" type="text/javascript"></script>
+    <script src="/socket.io/socket.io.js"></script>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<!--home.html-->
+<div class="jumbotron text-center">
+	<h2>Upload Page</h2>
+    <div class="container"> <!--ng-controller="UploadController"-->
+        <div class="form-group">
+            <ng-form name="myForm" id="contact-form" class="form-inline">
+	            <div class="form-group">     
+
+	                <input name="fileInput" id="input-1" type="file" class="form-control input-lg" ng-model="myFile" file-model="myFile" ng-required="true" ng-accept="'.dat'"/>
+	                
+	                <button id="uploadFile" type="submit" class="btn btn-success btn-lg" ng-click="uploadFile()" ng-disabled="myForm.$invalid || isProcessing"> Upload File </button>
+	                <label class="text-danger bg-danger" ng-show="myForm.$invalid">*File is required</label>  
+	            </div>     
+            </ng-form>
+
+        </div>
+    </div>
+</div>

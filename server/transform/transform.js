@@ -1,7 +1,5 @@
 'use strict';
 
-const parseSaleInfo = require('./parse-sale-info.js');
-const calculateSale = require('./calculate-sale.js');
 const parseFile  = require('./parse-file.js');
 const fillRegisters = require('./fill-registers.js');
 const calculateInfoFromSale = require('./calculate-info-sale.js');
@@ -22,21 +20,20 @@ function transformFlatFile(contentFromFileRead){
 
 	try{		
 		var structOfLinesParsed = parseFile.parseLinesFromInputFile(contentFromFileRead);
-		
 		structOfLinesParsed.map(function(item){
 			selectIdRegister(item);
 		});
 		
 		var highestSale = calculateInfoFromSale.calculateMostExpensiveSale(arrayOfSalesInputFile);
 		var worstSalesman = calculateInfoFromSale.calculateWorstSalesman(arrayOfSalesInputFile);
-		
 		var resumedFileStruct =  prepareInfoForOutput.prepareInfoForLoad(worstSalesman, highestSale);
 
+		resetArrays();
+		
 		return resumedFileStruct;
 	
 	}catch(err){
-		//etlLog.writeToLog('error', err);
-		throw err
+		etlLog.writeToLog('error', err);
 	}
 }
 
@@ -49,8 +46,7 @@ function selectIdRegister(item) {
 			arrayOfCostumersInputFile = fillRegisters.fillCostumerRegister(item, arrayOfCostumersInputFile);
 			break;
 		case SALE_ID:
-			var balanceSale = totalSaleFromSalesman(item.thirdItem);
-
+			var balanceSale = calculateInfoFromSale.totalSaleFromSalesman(item.thirdItem);
 			arrayOfSalesInputFile = fillRegisters.fillSaleRegister(item, arrayOfSalesInputFile, balanceSale);
 			break;
 		default:
@@ -58,10 +54,10 @@ function selectIdRegister(item) {
 	}
 }
 
-function totalSaleFromSalesman(saleUnparsed){
-	var saleInfoParsed = parseSaleInfo.parseSaleInfo(saleUnparsed);
-
-	return calculateSale.retrieveBalanceOfSales(saleInfoParsed);
+function resetArrays(){
+	arrayOfCostumersInputFile.length = 0;
+	arrayOfSalesmansInputFile.length = 0;
+	arrayOfSalesInputFile.length = 0;	
 }
 
 module.exports.transformFlatFile = transformFlatFile;

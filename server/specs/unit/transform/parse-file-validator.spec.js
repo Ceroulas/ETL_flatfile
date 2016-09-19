@@ -1,41 +1,68 @@
 'use strict';
 
 const mocha = require('mocha');
+const fs = require('fs');
+const sleep = require('sleep');
 const chai = require('chai');
 const expect = chai.expect;
 
 const parseValidator = require('./../../../transform/parse-file-validator.js');
+const logPath = __dirname+'/../../../etl.log';
 
 describe('Transform - Parse File Validator Test:', () => {
+
+	function ReadLog (logPath){
+        var contentFromLog = fs.readFileSync(logPath).toString();
+        var lines = contentFromLog.trim().split('\n');
+       
+        return lines.pop();
+    }
 	
 	it('it should return true: number of line separators is ok', () =>{
 		var lineSeparator = 'ç';
 		var lineToValidate = '001ç1234567891234çDiegoç50000';
 		var index = 0;
 
-		var validateSeparator = parseValidator.validateString(lineToValidate, index, lineSeparator);
+		var validateSeparator = parseValidator.validateLineSeparator(lineToValidate, index, lineSeparator);
 
+		
 		expect(validateSeparator).to.be.equal(true);
 	});
 
 	it('it should return ERROR: document code have chars', () =>{
 		var lineSeparator = 'ç';
 		var messageError = 'Document code needs to have only digits!';
-		var lineToValidate = '001ç123456XXX7891234çDiegoç50000';
+		var lineToValidate = {
+			id: '001',
+			documentCode: '123456XXX7891234',
+			thirdItem: 'Diego', 
+			fourthItem: '50000'
+		};
 		var index = 0;
 
-		var validateSeparator = ()=>{parseValidator.validateString(lineToValidate, index, lineSeparator)};
-		expect(validateSeparator).to.throw(Error, messageError);
+		parseValidator.validateElementsFromParsedLine(lineToValidate, index);
+		sleep.usleep(50);
+        var resultFromLog = ReadLog(logPath);
+
+		expect(resultFromLog.search(messageError)).to.not.equal(-1);
 	});
 
 	it('it should return ERROR: ID code have chars', () =>{
 		var lineSeparator = 'ç';
 		var messageError = 'ID needs to have only digits!';
-		var lineToValidate = '00XXX1ç1234567891234çDiegoç50000';
+		var lineToValidate = {
+			id: '0XXX01',
+			documentCode: '1234567891234',
+			thirdItem: 'Diego', 
+			fourthItem: '50000'
+		};
 		var index = 0;
 
-		var validateSeparator = ()=>{parseValidator.validateString(lineToValidate, index, lineSeparator)};
-		expect(validateSeparator).to.throw(Error, messageError);
+		parseValidator.validateElementsFromParsedLine(lineToValidate, index);
+		sleep.usleep(50);
+        var resultFromLog = ReadLog(logPath);
+
+		expect(resultFromLog.search(messageError)).to.not.equal(-1);
 	});
 
 	it('it should return ERROR: more than 3 line separators', () =>{
@@ -45,9 +72,12 @@ describe('Transform - Parse File Validator Test:', () => {
 		var index = 0;
 		var messageError  = 'Number of line separators is wrong! Should be: '+ numPossiblesLineSeparators;
 
-		var validateSeparator = ()=>{parseValidator.validateString(lineToValidate, index, lineSeparator)};
-		expect(validateSeparator).to.throw(Error, messageError);
-	});	
+		parseValidator.validateLineSeparator(lineToValidate, index, lineSeparator);
+		sleep.usleep(50);
+        var resultFromLog = ReadLog(logPath);
+
+		expect(resultFromLog.search(messageError)).to.not.equal(-1);
+	});
 
 	it('it should return ERROR: not enough line separators', () =>{
 		var lineSeparator = 'ç';
@@ -56,8 +86,11 @@ describe('Transform - Parse File Validator Test:', () => {
 		var index = 0;
 		var messageError = 'Number of line separators is wrong! Should be: '+ numPossiblesLineSeparators;
 
-		var validateSeparator = ()=>{parseValidator.validateString(lineToValidate, index, lineSeparator)};
-		expect(validateSeparator).to.throw(Error, messageError);
+		parseValidator.validateLineSeparator(lineToValidate, index, lineSeparator);
+		sleep.usleep(50);
+        var resultFromLog = ReadLog(logPath);
+
+		expect(resultFromLog.search(messageError)).to.not.equal(-1);
 	});
 
 });

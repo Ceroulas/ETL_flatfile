@@ -2,14 +2,23 @@
 
 const mocha = require('mocha');
 const fs = require('fs');
+const sleep = require('sleep');
 const chai = require('chai');
 const expect = chai.expect;
 
 const load = require('./../../../load/write-file.js');
 const outputFilePath = __dirname+'/../../resources/test.done.dat';
+const logPath = __dirname+'/../../../etl.log';
 
 
 describe('Write file Test:', () => {
+
+  	function ReadLog (logPath){
+        var contentFromLog = fs.readFileSync(logPath).toString();
+        var lines = contentFromLog.trim().split('\n');
+       
+        return lines.pop();
+    }
 
 	it('Should write file in the output directory', () =>{	
 		var resumedFileStruct = {
@@ -38,23 +47,32 @@ describe('Write file Test:', () => {
 			worstSalesman: 'Jonathan',
 			highestSale: 10000
 		};
+		var messageError = 'Error';
 
-		var loadInfoToFile = ()=>{load.writeFileInOutputFolder(resumedFileStruct)};
-
-    	expect(loadInfoToFile).to.throw(Error); 					
+		load.writeFileInOutputFolder('',resumedFileStruct);
+		sleep.usleep(50);
+		var resultFromLog = ReadLog(logPath);
+		
+		expect(resultFromLog.search(messageError)).to.not.equal(-1); 					
 	});
 
 	it('Should throw ERROR no struct sent.', () =>{	
+		var messageError = 'Error';
 
-		var loadInfoToFile = ()=>{load.writeFileInOutputFolder(outputFilePath)};
-
-    	expect(loadInfoToFile).to.throw(Error); 					
+		load.writeFileInOutputFolder(outputFilePath, '');
+		sleep.usleep(50);
+		var resultFromLog = ReadLog(logPath);
+		
+		expect(resultFromLog.search(messageError)).to.not.equal(-1); 					
 	});
 
 	it('Should throw ERROR no struct or file sent.', () =>{	
+		var messageError = 'Error';
 
-		var loadInfoToFile = ()=>{load.writeFileInOutputFolder()};
-
-    	expect(loadInfoToFile).to.throw(Error); 					
+		load.writeFileInOutputFolder();
+		sleep.usleep(50);
+		var resultFromLog = ReadLog(logPath);
+		
+		expect(resultFromLog.search(messageError)).to.not.equal(-1);					
 	});
 });

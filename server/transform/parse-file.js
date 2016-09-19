@@ -28,18 +28,16 @@ module.exports = {
 
 function parsedFileStruct (stringSplittedInLines) {
 	var structOfLinesParsed = [];
+	
 	stringSplittedInLines.map(function(line, index){
 		if(parseFileValidator.validateLineSeparator(line, index, SEPARATOR_OF_FIELDS_FOR_LINE)){
-			//structOfLinesParsed.push(parseLine(line));
-
+			
 			var lineParsed = parseLine(line);
 			if( parseFileValidator.validateElementsFromParsedLine(lineParsed, index) ){
-				console.log('entrei')
 				structOfLinesParsed.push(lineParsed);	
 			}
 		}
 	});
-	console.log(structOfLinesParsed)
 	return structOfLinesParsed;
 }
 

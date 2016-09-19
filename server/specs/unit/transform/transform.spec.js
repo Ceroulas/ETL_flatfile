@@ -3,12 +3,22 @@
 const mocha = require('mocha');
 const sinon = require('sinon');
 require('mocha-sinon');
+const fs = require('fs');
+const sleep = require('sleep');
 const chai = require('chai');
 const expect = chai.expect;
 
 const transform = require('./../../../transform/transform.js');
+const logPath = __dirname+'/../../../etl.log';
 
 describe('Transform Test:', () => {
+
+    function ReadLog (logPath){
+        var contentFromLog = fs.readFileSync(logPath).toString();
+        var lines = contentFromLog.trim().split('\n');
+       
+        return lines.pop();
+    }
 
 	it('it should return struct of line parsed readed from file', () =>{
 		var contentFromFile = '001ç1234567891234çDiegoç50000' +'\n'+
@@ -23,35 +33,44 @@ describe('Transform Test:', () => {
 		};	   					
 		
 		var structOfSeparatedLines = transform.transformFlatFile(contentFromFile);
-
+			
 		expect(structOfSeparatedLines.costumerCount).to.be.equal(expectedResumeFileStruct.costumerCount);
 		expect(structOfSeparatedLines.salesmanCount).to.be.equal(expectedResumeFileStruct.salesmanCount);
 		expect(structOfSeparatedLines.worstSalesman).to.be.equal(expectedResumeFileStruct.worstSalesman);
 		expect(structOfSeparatedLines.highestSale).to.be.equal(expectedResumeFileStruct.highestSale);
 	});
-
+	
 	it('it should return Error: ID needs to have only digits!', () =>{
 		var contentFromFile = '0xx01ç1234567891234çDiegoç50000';
 		var messageError = 'ID needs to have only digits!';
 
-		var resultFromTransform = ()=>{transform.transformFlatFile(contentFromFile)};
-		expect(resultFromTransform).to.throw(Error, messageError);
+		transform.transformFlatFile(contentFromFile);
+		sleep.usleep(50);
+        var resultFromLog = ReadLog(logPath);
+
+        expect(resultFromLog.search(messageError)).to.not.equal(-1);
 	});
 
 	it('it should return Error: Not enough line separators!', () =>{
 		var contentFromFile = '0011234567891234çDiegoç50000';
 		var messageError = 'Number of line separators is wrong! Should be: 3'; 
 
-		var resultFromTransform = ()=>{transform.transformFlatFile(contentFromFile)};
-		expect(resultFromTransform).to.throw(Error, messageError);
+		transform.transformFlatFile(contentFromFile);
+		sleep.usleep(50);
+        var resultFromLog = ReadLog(logPath);
+
+        expect(resultFromLog.search(messageError)).to.not.equal(-1);
 	});
 
 	it('it should return Error: Document code needs to have only digits!', () =>{
 		var contentFromFile = '001ç12345xxx67891234çDiegoç50000';
 		var messageError = 'Document code needs to have only digits!';
 
-		var resultFromTransform = ()=>{transform.transformFlatFile(contentFromFile)};
-		expect(resultFromTransform).to.throw(Error, messageError);
+		transform.transformFlatFile(contentFromFile);
+		sleep.usleep(50);
+        var resultFromLog = ReadLog(logPath);
+
+        expect(resultFromLog.search(messageError)).to.not.equal(-1);
 	});
 
 
@@ -59,15 +78,20 @@ describe('Transform Test:', () => {
 		var messageError = 'ID not recognized in System. Verify your file syntax.';
 		var contentFromFile = '004ç1234567891234çDiegoç50000';
 		
-		var resultFromTransform = ()=>{transform.transformFlatFile(contentFromFile)};
+		var resultFromTransform = transform.transformFlatFile(contentFromFile);
+		sleep.usleep(50);
+        var resultFromTransform = ReadLog(logPath);
 
-    	expect(resultFromTransform).to.throw(Error, messageError);
+        expect(resultFromTransform.search(messageError)).to.not.equal(-1);
 	});
 
 	it('it should return TypeError: no data received from Extract', () =>{
+		var messageError = 'Error';
+		
+		var resultFromTransform = transform.transformFlatFile();
+		sleep.usleep(50);
+        var resultFromTransform = ReadLog(logPath);
 
-		var structOfSeparatedLines = ()=>{transform.transformFlatFile()};
-		expect(structOfSeparatedLines).to.throw(Error);
+        expect(resultFromTransform.search(messageError)).to.not.equal(-1);
 	});
-
 });

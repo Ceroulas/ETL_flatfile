@@ -1,13 +1,23 @@
 'use strict';
 
 const mocha = require('mocha');
+const fs = require('fs');
+const sleep = require('sleep');
 const chai = require('chai');
 const expect = chai.expect;
 const transform = require('./../../../transform/parse-sale-info.js');
 
 const filePath = __dirname+'/../../resources/test.dat';
+const logPath = __dirname+'/../../../etl.log';
 
 describe('Transform - Parse Sale Info Test:', () => {
+
+	function ReadLog (logPath){
+        var contentFromLog = fs.readFileSync(logPath).toString();
+        var lines = contentFromLog.trim().split('\n');
+       
+        return lines.pop();
+    }
 	
 	it('it should return the expect sale string parsed.', () =>{
 		var stringSaleUnparsed = '[1-10-100,2-30-2.50,3-40-3.10]';
@@ -23,8 +33,11 @@ describe('Transform - Parse Sale Info Test:', () => {
 	it('it should return TypeError: no data received to parse', () =>{
 		var messageError = 'Cannot read property \'replace\' of undefined';
 
-		var parseSale = ()=>{transform.parseSaleInfo()};
-		expect(parseSale).to.throw(TypeError, messageError);
+		transform.parseSaleInfo();
+		sleep.usleep(50);
+		var resultFromLog = ReadLog(logPath);
+		
+		expect(resultFromLog.search(messageError)).to.not.equal(-1);
 	});
 
 });

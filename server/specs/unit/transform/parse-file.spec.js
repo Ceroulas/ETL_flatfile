@@ -1,12 +1,22 @@
 'use strict';
 
 const mocha = require('mocha');
+const fs = require('fs');
+const sleep = require('sleep');
 const chai = require('chai');
 const expect = chai.expect;
 
 const parse = require('./../../../transform/parse-file.js');
+const logPath = __dirname+'/../../../etl.log';
 
 describe('Transform - Parse file Test:', () => {
+
+	function ReadLog (logPath){
+        var contentFromLog = fs.readFileSync(logPath).toString();
+        var lines = contentFromLog.trim().split('\n');
+       
+        return lines.pop();
+    }
 	
 	it('it should return struct of line parsed readed from file', () =>{
 		var contentFromFile = '001ç1234567891234çDiegoç50000';
@@ -30,29 +40,41 @@ describe('Transform - Parse file Test:', () => {
 		var contentFromFile = '0xx01ç1234567891234çDiegoç50000';
 		var messageError = 'ID needs to have only digits!';
 
-		var parsedLines = ()=>{parse.parseLinesFromInputFile(contentFromFile)};
-		expect(parsedLines).to.throw(Error, messageError);
+		parse.parseLinesFromInputFile(contentFromFile);
+		var resultFromLog = ReadLog(logPath);
+
+		expect(resultFromLog.search(messageError)).to.not.equal(-1);
 	});
 
 	it('it should return Error: Not enough line separators!', () =>{
 		var contentFromFile = '0011234567891234çDiegoç50000';
 		var messageError = 'Number of line separators is wrong! Should be: 3'; 
 
-		var parsedLines = ()=>{parse.parseLinesFromInputFile(contentFromFile)};
-		expect(parsedLines).to.throw(Error, messageError);
+		parse.parseLinesFromInputFile(contentFromFile);
+		sleep.usleep(50);
+		var resultFromLog = ReadLog(logPath);
+		
+		expect(resultFromLog.search(messageError)).to.not.equal(-1);
 	});
 
 	it('it should return Error: Document code needs to have only digits!', () =>{
 		var contentFromFile = '001ç12345xxx67891234çDiegoç50000';
 		var messageError = 'Document code needs to have only digits!';
 
-		var parsedLines = ()=>{parse.parseLinesFromInputFile(contentFromFile)};
-		expect(parsedLines).to.throw(Error, messageError);
+		parse.parseLinesFromInputFile(contentFromFile);
+		sleep.usleep(50);
+		var resultFromLog = ReadLog(logPath);
+		
+		expect(resultFromLog.search(messageError)).to.not.equal(-1);
 	});
 
 	it('it should return TypeError: no data received from Extract', () =>{
+		var messageError = 'TypeError';
 
-		var parsedLines = ()=>{parse.parseLinesFromInputFile()};
-		expect(parsedLines).to.throw(Error);
+		parse.parseLinesFromInputFile();
+		sleep.usleep(50);
+		var resultFromLog = ReadLog(logPath);
+		
+		expect(resultFromLog.search(messageError)).to.not.equal(-1);
 	});
 });

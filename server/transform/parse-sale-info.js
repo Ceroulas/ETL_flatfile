@@ -13,8 +13,7 @@ module.exports = {
 
 				return removeTraceFromEachSale(eachSaleSeparated);
 		}catch(err){
-			//etlLog.writeToLog('error', err);
-			throw err
+			etlLog.writeToLog('error', err);
 		}
 	}
 }
