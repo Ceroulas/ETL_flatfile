@@ -1,6 +1,8 @@
 'use strict';
 
-var validFileName  = require('valid-filename');
+const validFileName  = require('valid-filename');
+
+const ADD_ONE_INDEX = 1;
 
 module.exports = {
 	
@@ -10,8 +12,17 @@ module.exports = {
 		}catch(err){
 			throw err;
 		}
+	},	
+
+	findOuputFileName: function(inputPathFile){
+		let inputFileName = findFileName(inputPathFile);
+		let lastIndexSlach = inputFileName.lastIndexOf('/')+ADD_ONE_INDEX;
+		let lastIndexPoint = inputFileName.lastIndexOf('.');
+
+		return inputFileName.substring(lastIndexSlach, lastIndexPoint);
 	}
 }
+
 
 function fileExtensionVerification (inputPathFile) {
 	if(verifyIfDatFile(findFileName(inputPathFile)))

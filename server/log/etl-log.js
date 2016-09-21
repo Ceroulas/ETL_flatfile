@@ -2,10 +2,17 @@
 
 const fs = require('fs');
 const Log = require('log');
-const log = new Log('info', fs.createWriteStream('etl.log', {flags: 'a'}));
+
+let log;
 
 module.exports = {
-	writeToLog: function(type, message){
+	createLog: function ( inputFileName ) {
+		let logPath =  __dirname+'/logs/'+inputFileName+'.log';
+		//let logPath =  __dirname+'/../'+'test.log';
+		log = new Log('info', fs.createWriteStream(logPath, {flags: 'a'}))
+	},
+
+	writeToLog: function( type, message ) {
 		switch(type){
 			case 'error':
 				log.error(message);

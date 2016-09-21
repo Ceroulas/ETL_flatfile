@@ -1,18 +1,19 @@
 angular.module('uploadApp')
-		.controller('UploadController', ['$scope','fileUpload','verifyDatFile',function($scope, fileUpload, verifyDatFile){
+		.controller('UploadController', ['$scope','fileUpload','verifyDatFile', '$location',function($scope, fileUpload, verifyDatFile, $location){
 
 			$scope.uploadFile = function(){
 		        var file = $scope.myFile;
-		        var uploadUrl = "/fileUpload";
+		        var uploadUrl = "/upload";
 
 		        if(verifyDatFile.verifyIfIsDatFile(file)){
 
 			        $scope.isProcessing  = true;
 			        var outputFileData = fileUpload.uploadFileToUrl(file, uploadUrl);
 	 				outputFileData.then(function(result){
-	 					//$scope.content = result.data;
 	 					$scope.isProcessing  = false;
 	 				});
+
+	 				$location.path('/log');
 	 			}	
     		};
     		

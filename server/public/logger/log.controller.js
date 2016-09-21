@@ -1,11 +1,17 @@
 angular.module('uploadApp')
-		.controller('LogController', function( $scope) {
-			$scope.message = 'ESTAMOS NO LOG!';
+		.controller('LogController', [ '$scope','$location', function( $scope, $location ) {
+			$scope.message = '';
+			$scope.ready = false;
 
-			var socket = io();
-			
-			socket.on('get msg', function(msg){
-				console.log(msg);
-				$scope.message = msg;
+			var socket = io('/log');
+
+			socket.on('get msg', function(data){
+				$scope.$apply(function() {
+					$scope.message += data;
+
+					if(data.search('Processing of file ended.') !== -1){
+						$scope.ready = true;
+					}
+				});
   			});
-		});
+		}]);

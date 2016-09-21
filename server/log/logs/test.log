@@ -1,0 +1,72 @@
+[Wed Sep 21 2016 14:24:02 GMT-0300 (BRT)] INFO  :: flatFileResumer :: Beginnig extraction of file.
+[Wed Sep 21 2016 14:24:02 GMT-0300 (BRT)] INFO  :: flatFileResumer :: File extraction ended.
+[Wed Sep 21 2016 14:24:02 GMT-0300 (BRT)] INFO  :: flatFileResumer :: Beginnig transform info from file.
+[Wed Sep 21 2016 14:24:02 GMT-0300 (BRT)] ERROR Line: 10 - ID needs to have only digits!
+[Wed Sep 21 2016 14:24:02 GMT-0300 (BRT)] INFO  :: flatFileResumer :: Transform info from file ended.
+[Wed Sep 21 2016 14:24:02 GMT-0300 (BRT)] INFO  :: flatFileResumer :: Preparing to write output file resume.
+[Wed Sep 21 2016 14:24:02 GMT-0300 (BRT)] INFO  :: flatFileResumer :: Ouput file resume created.
+[Wed Sep 21 2016 14:24:02 GMT-0300 (BRT)] INFO  :: flatFileResumer :: Processing of file ended.
+[Wed Sep 21 2016 14:25:49 GMT-0300 (BRT)] INFO  :: flatFileResumer :: Beginnig extraction of file.
+[Wed Sep 21 2016 14:25:49 GMT-0300 (BRT)] INFO  :: flatFileResumer :: File extraction ended.
+[Wed Sep 21 2016 14:25:49 GMT-0300 (BRT)] INFO  :: flatFileResumer :: Beginnig transform info from file.
+[Wed Sep 21 2016 14:25:49 GMT-0300 (BRT)] ERROR Line: 10 - ID needs to have only digits!
+[Wed Sep 21 2016 14:25:49 GMT-0300 (BRT)] INFO  :: flatFileResumer :: Transform info from file ended.
+[Wed Sep 21 2016 14:25:49 GMT-0300 (BRT)] INFO  :: flatFileResumer :: Preparing to write output file resume.
+[Wed Sep 21 2016 14:25:49 GMT-0300 (BRT)] INFO  :: flatFileResumer :: Ouput file resume created.
+[Wed Sep 21 2016 14:25:49 GMT-0300 (BRT)] INFO  :: flatFileResumer :: Processing of file ended.
+[Wed Sep 21 2016 14:56:00 GMT-0300 (BRT)] INFO  :: flatFileResumer :: Beginnig extraction of file.
+[Wed Sep 21 2016 14:56:00 GMT-0300 (BRT)] INFO  :: flatFileResumer :: File extraction ended.
+[Wed Sep 21 2016 14:56:00 GMT-0300 (BRT)] INFO  :: flatFileResumer :: Beginnig transform info from file.
+[Wed Sep 21 2016 14:56:00 GMT-0300 (BRT)] ERROR Line: 10 - ID needs to have only digits!
+[Wed Sep 21 2016 14:56:00 GMT-0300 (BRT)] INFO  :: flatFileResumer :: Transform info from file ended.
+[Wed Sep 21 2016 14:56:00 GMT-0300 (BRT)] INFO  :: flatFileResumer :: Preparing to write output file resume.
+[Wed Sep 21 2016 14:56:00 GMT-0300 (BRT)] INFO  :: flatFileResumer :: Ouput file resume created.
+[Wed Sep 21 2016 14:56:00 GMT-0300 (BRT)] INFO  :: flatFileResumer :: Processing of file ended.
+[Wed Sep 21 2016 14:57:33 GMT-0300 (BRT)] INFO  :: flatFileResumer :: Beginnig extraction of file.
+[Wed Sep 21 2016 14:57:33 GMT-0300 (BRT)] INFO  :: flatFileResumer :: File extraction ended.
+[Wed Sep 21 2016 14:57:33 GMT-0300 (BRT)] INFO  :: flatFileResumer :: Beginnig transform info from file.
+[Wed Sep 21 2016 14:57:33 GMT-0300 (BRT)] ERROR Line: 10 - ID needs to have only digits!
+[Wed Sep 21 2016 14:57:33 GMT-0300 (BRT)] INFO  :: flatFileResumer :: Transform info from file ended.
+[Wed Sep 21 2016 14:57:33 GMT-0300 (BRT)] INFO  :: flatFileResumer :: Preparing to write output file resume.
+[Wed Sep 21 2016 14:57:33 GMT-0300 (BRT)] INFO  :: flatFileResumer :: Ouput file resume created.
+[Wed Sep 21 2016 14:57:33 GMT-0300 (BRT)] INFO  :: flatFileResumer :: Processing of file ended.
+[Wed Sep 21 2016 14:58:36 GMT-0300 (BRT)] INFO  :: flatFileResumer :: Beginnig extraction of file.
+[Wed Sep 21 2016 14:58:36 GMT-0300 (BRT)] INFO  :: flatFileResumer :: File extraction ended.
+[Wed Sep 21 2016 14:58:36 GMT-0300 (BRT)] INFO  :: flatFileResumer :: Beginnig transform info from file.
+[Wed Sep 21 2016 14:58:36 GMT-0300 (BRT)] ERROR Line: 10 - ID needs to have only digits!
+[Wed Sep 21 2016 14:58:36 GMT-0300 (BRT)] INFO  :: flatFileResumer :: Transform info from file ended.
+[Wed Sep 21 2016 14:58:36 GMT-0300 (BRT)] INFO  :: flatFileResumer :: Preparing to write output file resume.
+[Wed Sep 21 2016 14:58:36 GMT-0300 (BRT)] INFO  :: flatFileResumer :: Ouput file resume created.
+[Wed Sep 21 2016 14:58:36 GMT-0300 (BRT)] INFO  :: flatFileResumer :: Processing of file ended.
+[Wed Sep 21 2016 15:02:05 GMT-0300 (BRT)] INFO  :: flatFileResumer :: Beginnig extraction of file.
+[Wed Sep 21 2016 15:02:05 GMT-0300 (BRT)] INFO  :: flatFileResumer :: File extraction ended.
+[Wed Sep 21 2016 15:02:05 GMT-0300 (BRT)] INFO  :: flatFileResumer :: Beginnig transform info from file.
+[Wed Sep 21 2016 15:02:05 GMT-0300 (BRT)] ERROR Line: 10 - ID needs to have only digits!
+[Wed Sep 21 2016 15:02:05 GMT-0300 (BRT)] INFO  :: flatFileResumer :: Transform info from file ended.
+[Wed Sep 21 2016 15:02:05 GMT-0300 (BRT)] INFO  :: flatFileResumer :: Preparing to write output file resume.
+[Wed Sep 21 2016 15:02:05 GMT-0300 (BRT)] INFO  :: flatFileResumer :: Ouput file resume created.
+[Wed Sep 21 2016 15:02:05 GMT-0300 (BRT)] INFO  :: flatFileResumer :: Processing of file ended.
+[Wed Sep 21 2016 15:19:01 GMT-0300 (BRT)] INFO  :: flatFileResumer :: Beginnig extraction of file.
+[Wed Sep 21 2016 15:19:01 GMT-0300 (BRT)] INFO  :: flatFileResumer :: File extraction ended.
+[Wed Sep 21 2016 15:19:01 GMT-0300 (BRT)] INFO  :: flatFileResumer :: Beginnig transform info from file.
+[Wed Sep 21 2016 15:19:01 GMT-0300 (BRT)] ERROR Line: 10 - ID needs to have only digits!
+[Wed Sep 21 2016 15:19:01 GMT-0300 (BRT)] INFO  :: flatFileResumer :: Transform info from file ended.
+[Wed Sep 21 2016 15:19:01 GMT-0300 (BRT)] INFO  :: flatFileResumer :: Preparing to write output file resume.
+[Wed Sep 21 2016 15:19:01 GMT-0300 (BRT)] INFO  :: flatFileResumer :: Ouput file resume created.
+[Wed Sep 21 2016 15:19:01 GMT-0300 (BRT)] INFO  :: flatFileResumer :: Processing of file ended.
+[Wed Sep 21 2016 15:25:35 GMT-0300 (BRT)] INFO  :: flatFileResumer :: Beginnig extraction of file.
+[Wed Sep 21 2016 15:25:35 GMT-0300 (BRT)] INFO  :: flatFileResumer :: File extraction ended.
+[Wed Sep 21 2016 15:25:35 GMT-0300 (BRT)] INFO  :: flatFileResumer :: Beginnig transform info from file.
+[Wed Sep 21 2016 15:25:35 GMT-0300 (BRT)] ERROR Line: 10 - ID needs to have only digits!
+[Wed Sep 21 2016 15:25:35 GMT-0300 (BRT)] INFO  :: flatFileResumer :: Transform info from file ended.
+[Wed Sep 21 2016 15:25:35 GMT-0300 (BRT)] INFO  :: flatFileResumer :: Preparing to write output file resume.
+[Wed Sep 21 2016 15:25:35 GMT-0300 (BRT)] INFO  :: flatFileResumer :: Ouput file resume created.
+[Wed Sep 21 2016 15:25:35 GMT-0300 (BRT)] INFO  :: flatFileResumer :: Processing of file ended.
+[Wed Sep 21 2016 15:28:55 GMT-0300 (BRT)] INFO  :: flatFileResumer :: Beginnig extraction of file.
+[Wed Sep 21 2016 15:28:55 GMT-0300 (BRT)] INFO  :: flatFileResumer :: File extraction ended.
+[Wed Sep 21 2016 15:28:55 GMT-0300 (BRT)] INFO  :: flatFileResumer :: Beginnig transform info from file.
+[Wed Sep 21 2016 15:28:55 GMT-0300 (BRT)] ERROR Line: 10 - ID needs to have only digits!
+[Wed Sep 21 2016 15:28:55 GMT-0300 (BRT)] INFO  :: flatFileResumer :: Transform info from file ended.
+[Wed Sep 21 2016 15:28:55 GMT-0300 (BRT)] INFO  :: flatFileResumer :: Preparing to write output file resume.
+[Wed Sep 21 2016 15:28:55 GMT-0300 (BRT)] INFO  :: flatFileResumer :: Ouput file resume created.
+[Wed Sep 21 2016 15:28:55 GMT-0300 (BRT)] INFO  :: flatFileResumer :: Processing of file ended.

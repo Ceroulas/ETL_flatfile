@@ -1,8 +1,10 @@
 <!-- log.html -->
 <div class="jumbotron text-center">
     <h2>Log Page</h2>
-
-    <pre class="text-info">
-    	<p id="log" class ="lead pull-left">{{ message }}</p>
-    </pre>
+    <div class="container .col-xs-6 .col-md-4"> 
+	    <pre class="panel panel-default " style="max-height: 10;">
+	    	<p id="log" class ="pull-left" style = "text-align: justify;">{{ message }}</p>
+	    	<label class="pull-left" ng-show="ready" style = "text-align: justify;"><a href="#/report">Go to Report</a></label> 
+	    </pre>
+	</div>    
 </div>

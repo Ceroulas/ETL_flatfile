@@ -5,11 +5,20 @@ const Salesman = require('./models/salesman-register.js');
 
 module.exports = {
 	prepareInfoForLoad: function ( worstSalesman, highestSale ) {
-		return {
+		let fileResumeStruct = {
 			costumerCount: Costumer.count, 
 			salesmanCount: Salesman.count,
 			worstSalesman: worstSalesman,
 			highestSale: highestSale
 		};
+
+		resetModels();
+
+		return fileResumeStruct;
 	}
+}
+
+function resetModels(){
+	Costumer.count = 0;
+	Salesman.count = 0;
 }

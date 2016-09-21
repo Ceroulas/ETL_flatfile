@@ -1,7 +1,5 @@
-'use strict';
-
-const watchIn = require('./watch.js')
-
+'use strict'
+require('./input-watcher');
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
@@ -14,7 +12,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true}));
 app.use(express.static(__dirname + '/public'));
 
-require('./routes.js')(app, io);
+require('./routes')(app, io);
 
 http.listen(port, function(){
 	console.log('App listening on port: '+ port);

@@ -19,6 +19,8 @@ var arrayOfSalesInputFile = [];
 function transformFlatFile(contentFromFileRead){
 
 	try{		
+		resetArrays();
+
 		var structOfLinesParsed = parseFile.parseLinesFromInputFile(contentFromFileRead);
 		structOfLinesParsed.map(function(item){
 			selectIdRegister(item);
@@ -27,9 +29,7 @@ function transformFlatFile(contentFromFileRead){
 		var highestSale = calculateInfoFromSale.calculateMostExpensiveSale(arrayOfSalesInputFile);
 		var worstSalesman = calculateInfoFromSale.calculateWorstSalesman(arrayOfSalesInputFile);
 		var resumedFileStruct =  prepareInfoForOutput.prepareInfoForLoad(worstSalesman, highestSale);
-
-		resetArrays();
-		
+	
 		return resumedFileStruct;
 	
 	}catch(err){
@@ -57,7 +57,7 @@ function selectIdRegister(item) {
 function resetArrays(){
 	arrayOfCostumersInputFile.length = 0;
 	arrayOfSalesmansInputFile.length = 0;
-	arrayOfSalesInputFile.length = 0;	
+	arrayOfSalesInputFile.length = 0;
 }
 
 module.exports.transformFlatFile = transformFlatFile;
