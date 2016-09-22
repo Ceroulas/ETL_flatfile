@@ -8,7 +8,6 @@ let log;
 module.exports = {
 	createLog: function ( inputFileName ) {
 		let logPath =  __dirname+'/logs/'+inputFileName+'.log';
-		//let logPath =  __dirname+'/../'+'test.log';
 		log = new Log('info', fs.createWriteStream(logPath, {flags: 'a'}))
 	},
 

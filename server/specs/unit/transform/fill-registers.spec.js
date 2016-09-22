@@ -3,14 +3,22 @@
 const mocha = require('mocha');
 const fs  = require('fs');
 const sleep = require('sleep');
+const Log = require('log');
 const rewire = require('rewire');
 const chai = require('chai');
 const expect = chai.expect;
 
 const fillRegisters = rewire('./../../../transform/fill-registers.js');
-const logPath = __dirname+'/../../../etl.log';
+const logPath = __dirname+'/../../../log/logs/test.log';
+const etlLog = require('./../../../log/etl-log.js');
 
 describe('Transform - Fill registers tests:', function(){
+
+	before(function () {
+		let inpurFileName = 'test';
+		etlLog.createLog(inpurFileName);
+	})
+
 
   	afterEach(function(){
   		fillRegisters.__set__("Costumer.count", 0);

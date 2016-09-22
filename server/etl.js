@@ -9,7 +9,6 @@ const etlLog = require('./log/etl-log.js');
 function flatFileResumer(inputFilePath, outputPath) {
 	try{
 		
-
 		if(fileValidator.fileValidation(inputFilePath)){
 			let inputFileName = fileValidator.findOuputFileName(inputFilePath);
 			etlLog.createLog(inputFileName);
@@ -25,6 +24,7 @@ function flatFileResumer(inputFilePath, outputPath) {
 			etlLog.writeToLog('info', ' :: '+flatFileResumer.name+' :: '+'Preparing to write output file resume.');
 			let outputFilePath = outputPath + inputFileName + '.done.dat';
 			load.writeFileInOutputFolder(outputFilePath, resumedFileStruct);
+
 			etlLog.writeToLog('info', ' :: '+flatFileResumer.name+' :: '+'Ouput file resume created.');
 
 			etlLog.writeToLog('info', ' :: '+flatFileResumer.name+' :: '+'Processing of file ended.');

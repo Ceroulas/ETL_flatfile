@@ -9,9 +9,15 @@ const chai = require('chai');
 const expect = chai.expect;
 
 const transform = require('./../../../transform/transform.js');
-const logPath = __dirname+'/../../../etl.log';
+const logPath = __dirname+'/../../../log/logs/test.log';
+const etlLog = require('./../../../log/etl-log.js');
 
 describe('Transform Test:', () => {
+
+	before(function () {
+		let inpurFileName = 'test';
+		etlLog.createLog(inpurFileName);
+	})
 
     function ReadLog (logPath){
         var contentFromLog = fs.readFileSync(logPath).toString();

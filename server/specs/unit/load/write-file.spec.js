@@ -3,15 +3,22 @@
 const mocha = require('mocha');
 const fs = require('fs');
 const sleep = require('sleep');
+const Log = require('log');
 const chai = require('chai');
 const expect = chai.expect;
 
 const load = require('./../../../load/write-file.js');
 const outputFilePath = __dirname+'/../../resources/test.done.dat';
-const logPath = __dirname+'/../../../etl.log';
+const etlLog = require('./../../../log/etl-log.js');
+const logPath = __dirname+'/../../../log/logs/test.log';
 
 
 describe('Write file Test:', () => {
+
+	before(function () {
+		let inpurFileName = 'test';
+		etlLog.createLog(inpurFileName);
+	})
 
   	function ReadLog (logPath){
         var contentFromLog = fs.readFileSync(logPath).toString();

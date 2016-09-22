@@ -3,14 +3,21 @@
 const mocha = require('mocha');
 const fs  = require('fs');
 const sleep = require('sleep');
+const Log = require('log');
 const chai = require('chai');
 const expect = chai.expect;
 
 const filePath = __dirname+'/../../resources/extract-success-test.dat';
-const logPath = __dirname+'/../../../etl.log';
+const logPath = __dirname+'/../../../log/logs/extract-success-test.log';
 const extract = require('./../../../extract/extract.js');
+const etlLog = require('./../../../log/etl-log.js');
 
 describe('Extract Test:', () => {
+
+	before(function () {
+		let inpurFileName = 'extract-success-test';
+		etlLog.createLog(inpurFileName);
+	})
 	
 	function ReadLog (logPath){
         var contentFromLog = fs.readFileSync(logPath).toString();
@@ -37,15 +44,4 @@ describe('Extract Test:', () => {
 		
 		expect(resultFromLog.search(messageError)).to.not.equal(-1);
 	});
-
-	/*it('it should return ERROR - Error: ENOENT file not found', () =>{
-		var inexistentFilePath = '/test/inexistentFile.dat';
-		var messageError = 'Error';
-		
-		extract.readInputFile(inexistentFilePath);
-		sleep.usleep(50);
-		var resultFromLog = ReadLog(logPath);
-		console.log('resultFromLog ' +resultFromLog)
-		expect(resultFromLog.search(messageError)).to.not.equal(-1);
-	});*/
 });
