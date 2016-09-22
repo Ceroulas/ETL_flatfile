@@ -266,3 +266,76 @@
 [Thu Sep 22 2016 10:18:58 GMT-0300 (BRT)] INFO  :: flatFileResumer :: Preparing to write output file resume.
 [Thu Sep 22 2016 10:18:58 GMT-0300 (BRT)] INFO  :: flatFileResumer :: Ouput file resume created.
 [Thu Sep 22 2016 10:18:58 GMT-0300 (BRT)] INFO  :: flatFileResumer :: Processing of file ended.
+[Thu Sep 22 2016 10:33:58 GMT-0300 (BRT)] ERROR { [Error: ENOENT: no such file or directory, open ''] errno: -2, code: 'ENOENT', syscall: 'open', path: '' }
+[Thu Sep 22 2016 10:33:58 GMT-0300 (BRT)] ERROR [TypeError: Cannot read property 'costumerCount' of undefined]
+[Thu Sep 22 2016 10:33:58 GMT-0300 (BRT)] INFO Costumer "existentUser" already in register.
+[Thu Sep 22 2016 10:33:58 GMT-0300 (BRT)] INFO Salesman "existentSalesman" already in register.
+[Thu Sep 22 2016 10:33:58 GMT-0300 (BRT)] ERROR Line: 1 - Document code needs to have only digits!
+[Thu Sep 22 2016 10:33:58 GMT-0300 (BRT)] ERROR Line: 1 - ID needs to have only digits!
+[Thu Sep 22 2016 10:33:58 GMT-0300 (BRT)] ERROR Line: 1 - Number of line separators is wrong! Should be: 3
+[Thu Sep 22 2016 10:33:58 GMT-0300 (BRT)] ERROR Line: 1 - Number of line separators is wrong! Should be: 3
+[Thu Sep 22 2016 10:33:58 GMT-0300 (BRT)] ERROR Line: 1 - ID needs to have only digits!
+[Thu Sep 22 2016 10:33:58 GMT-0300 (BRT)] ERROR Line: 1 - Number of line separators is wrong! Should be: 3
+[Thu Sep 22 2016 10:33:58 GMT-0300 (BRT)] ERROR Line: 1 - Document code needs to have only digits!
+[Thu Sep 22 2016 10:33:58 GMT-0300 (BRT)] ERROR [TypeError: Cannot read property 'split' of undefined]
+[Thu Sep 22 2016 10:33:58 GMT-0300 (BRT)] ERROR [TypeError: Cannot read property 'replace' of undefined]
+[Thu Sep 22 2016 10:33:58 GMT-0300 (BRT)] ERROR Line: 1 - ID needs to have only digits!
+[Thu Sep 22 2016 10:33:58 GMT-0300 (BRT)] ERROR Line: 1 - Number of line separators is wrong! Should be: 3
+[Thu Sep 22 2016 10:33:58 GMT-0300 (BRT)] ERROR Line: 1 - Document code needs to have only digits!
+[Thu Sep 22 2016 10:33:58 GMT-0300 (BRT)] ERROR [Error: ID not recognized in System. Verify your file syntax.]
+[Thu Sep 22 2016 10:33:58 GMT-0300 (BRT)] ERROR [TypeError: Cannot read property 'split' of undefined]
+[Thu Sep 22 2016 10:33:58 GMT-0300 (BRT)] ERROR [TypeError: Cannot read property 'map' of undefined]
+[Thu Sep 22 2016 10:33:59 GMT-0300 (BRT)] INFO  :: flatFileResumer :: Beginnig extraction of file.
+[Thu Sep 22 2016 10:33:59 GMT-0300 (BRT)] INFO  :: flatFileResumer :: File extraction ended.
+[Thu Sep 22 2016 10:33:59 GMT-0300 (BRT)] INFO  :: flatFileResumer :: Beginnig transform info from file.
+[Thu Sep 22 2016 10:33:59 GMT-0300 (BRT)] ERROR Line: 10 - ID needs to have only digits!
+[Thu Sep 22 2016 10:33:59 GMT-0300 (BRT)] INFO  :: flatFileResumer :: Transform info from file ended.
+[Thu Sep 22 2016 10:33:59 GMT-0300 (BRT)] INFO  :: flatFileResumer :: Preparing to write output file resume.
+[Thu Sep 22 2016 10:33:59 GMT-0300 (BRT)] INFO  :: flatFileResumer :: Ouput file resume created.
+[Thu Sep 22 2016 10:33:59 GMT-0300 (BRT)] INFO  :: flatFileResumer :: Processing of file ended.
+[Thu Sep 22 2016 15:33:36 GMT-0300 (BRT)] ERROR Line: 1 - ID needs to have only digits!
+[Thu Sep 22 2016 15:33:36 GMT-0300 (BRT)] ERROR Line: 1 - Number of line separators is wrong! Should be: 3
+[Thu Sep 22 2016 15:33:36 GMT-0300 (BRT)] ERROR Line: 1 - Document code needs to have only digits!
+[Thu Sep 22 2016 15:33:36 GMT-0300 (BRT)] ERROR [Error: ID not recognized in System. Verify your file syntax.]
+[Thu Sep 22 2016 15:33:36 GMT-0300 (BRT)] ERROR [TypeError: Cannot read property 'split' of undefined]
+[Thu Sep 22 2016 15:33:36 GMT-0300 (BRT)] ERROR [TypeError: Cannot read property 'map' of undefined]
+[Thu Sep 22 2016 15:54:11 GMT-0300 (BRT)] INFO  :: flatFileResumer :: Beginnig extraction of file.
+[Thu Sep 22 2016 15:54:11 GMT-0300 (BRT)] INFO  :: flatFileResumer :: File extraction ended.
+[Thu Sep 22 2016 15:54:11 GMT-0300 (BRT)] INFO  :: flatFileResumer :: Beginnig transform info from file.
+[Thu Sep 22 2016 15:54:11 GMT-0300 (BRT)] INFO  :: flatFileResumer :: Transform info from file ended.
+[Thu Sep 22 2016 15:54:11 GMT-0300 (BRT)] INFO  :: flatFileResumer :: Preparing to write output file resume.
+[Thu Sep 22 2016 15:54:11 GMT-0300 (BRT)] INFO  :: flatFileResumer :: Ouput file resume created.
+[Thu Sep 22 2016 15:54:11 GMT-0300 (BRT)] INFO  :: flatFileResumer :: Processing of file ended.
+[Thu Sep 22 2016 16:54:03 GMT-0300 (BRT)] ERROR { [Error: ENOENT: no such file or directory, open ''] errno: -2, code: 'ENOENT', syscall: 'open', path: '' }
+[Thu Sep 22 2016 16:54:03 GMT-0300 (BRT)] ERROR [TypeError: Cannot read property 'costumerCount' of undefined]
+[Thu Sep 22 2016 16:54:03 GMT-0300 (BRT)] INFO Costumer "existentUser" already in register.
+[Thu Sep 22 2016 16:54:03 GMT-0300 (BRT)] INFO Salesman "existentSalesman" already in register.
+[Thu Sep 22 2016 16:54:03 GMT-0300 (BRT)] ERROR Line: 1 - Document code needs to have only digits!
+[Thu Sep 22 2016 16:54:03 GMT-0300 (BRT)] ERROR Line: 1 - ID needs to have only digits!
+[Thu Sep 22 2016 16:54:03 GMT-0300 (BRT)] ERROR Line: 1 - Number of line separators is wrong! Should be: 3
+[Thu Sep 22 2016 16:54:03 GMT-0300 (BRT)] ERROR Line: 1 - Number of line separators is wrong! Should be: 3
+[Thu Sep 22 2016 16:54:03 GMT-0300 (BRT)] ERROR Line: 1 - ID needs to have only digits!
+[Thu Sep 22 2016 16:54:03 GMT-0300 (BRT)] ERROR Line: 1 - Number of line separators is wrong! Should be: 3
+[Thu Sep 22 2016 16:54:03 GMT-0300 (BRT)] ERROR Line: 1 - Document code needs to have only digits!
+[Thu Sep 22 2016 16:54:03 GMT-0300 (BRT)] ERROR [TypeError: Cannot read property 'split' of undefined]
+[Thu Sep 22 2016 16:54:03 GMT-0300 (BRT)] ERROR [TypeError: Cannot read property 'replace' of undefined]
+[Thu Sep 22 2016 16:54:03 GMT-0300 (BRT)] ERROR Line: 1 - ID needs to have only digits!
+[Thu Sep 22 2016 16:54:03 GMT-0300 (BRT)] ERROR Line: 1 - Number of line separators is wrong! Should be: 3
+[Thu Sep 22 2016 16:54:03 GMT-0300 (BRT)] ERROR Line: 1 - Document code needs to have only digits!
+[Thu Sep 22 2016 16:54:03 GMT-0300 (BRT)] ERROR ID not recognized in System. Verify your file syntax.
+[Thu Sep 22 2016 16:54:03 GMT-0300 (BRT)] ERROR [TypeError: Cannot read property 'split' of undefined]
+[Thu Sep 22 2016 16:54:03 GMT-0300 (BRT)] ERROR [TypeError: Cannot read property 'map' of undefined]
+[Thu Sep 22 2016 16:54:03 GMT-0300 (BRT)] INFO  :: flatFileResumer :: Beginnig extraction of file.
+[Thu Sep 22 2016 16:54:03 GMT-0300 (BRT)] INFO  :: flatFileResumer :: File extraction ended.
+[Thu Sep 22 2016 16:54:03 GMT-0300 (BRT)] INFO  :: flatFileResumer :: Beginnig transform info from file.
+[Thu Sep 22 2016 16:54:03 GMT-0300 (BRT)] INFO  :: flatFileResumer :: Transform info from file ended.
+[Thu Sep 22 2016 16:54:03 GMT-0300 (BRT)] INFO  :: flatFileResumer :: Preparing to write output file resume.
+[Thu Sep 22 2016 16:54:03 GMT-0300 (BRT)] INFO  :: flatFileResumer :: Ouput file resume created.
+[Thu Sep 22 2016 16:54:03 GMT-0300 (BRT)] INFO  :: flatFileResumer :: Processing of file ended.
+[Thu Sep 22 2016 17:09:13 GMT-0300 (BRT)] INFO  :: flatFileResumer :: Beginnig extraction of file.
+[Thu Sep 22 2016 17:09:13 GMT-0300 (BRT)] INFO  :: flatFileResumer :: File extraction ended.
+[Thu Sep 22 2016 17:09:13 GMT-0300 (BRT)] INFO  :: flatFileResumer :: Beginnig transform info from file.
+[Thu Sep 22 2016 17:09:13 GMT-0300 (BRT)] INFO  :: flatFileResumer :: Transform info from file ended.
+[Thu Sep 22 2016 17:09:13 GMT-0300 (BRT)] INFO  :: flatFileResumer :: Preparing to write output file resume.
+[Thu Sep 22 2016 17:09:13 GMT-0300 (BRT)] INFO  :: flatFileResumer :: Ouput file resume created.
+[Thu Sep 22 2016 17:09:13 GMT-0300 (BRT)] INFO  :: flatFileResumer :: Processing of file ended.

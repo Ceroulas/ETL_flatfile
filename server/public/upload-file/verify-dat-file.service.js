@@ -1,20 +1,26 @@
 angular.module('uploadApp')
 		.service('verifyDatFile', ['$window', function($window){
-			var verifyIfIsDatFile = function (file){
-				var fileExtension = '';
-				if(typeof file.name !== 'undefined'){
-					fileExtension = file.name.split('.').pop();
-					
-					if(fileExtension !== 'dat'){
-        				$window.alert("Not a .dat file.");
-         				return false;
-       				}
-       				return true;
-				}else{
-					$window.alert("Not a file.");
-					return false;
-				}	
-
+			
+			let verifyIfIsDatFile = function (file){
+			
+				if(verifyExtension($window, fileExtension(file.name)))
+					return true;
+			
+				return false;	
+			
 			};
+			
 			return {verifyIfIsDatFile: verifyIfIsDatFile};
 		}]);
+
+function fileExtension ( name ){
+	return name.split('.').pop();
+}
+
+function verifyExtension ( $window, fileExtension ){
+	if( fileExtension === 'dat')
+		return true;
+
+	$window.alert("Not a .dat file.");
+	return false;	
+}

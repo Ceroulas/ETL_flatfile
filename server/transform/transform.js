@@ -22,6 +22,7 @@ function transformFlatFile(contentFromFileRead){
 		resetArrays();
 
 		var structOfLinesParsed = parseFile.parseLinesFromInputFile(contentFromFileRead);
+		console.log(structOfLinesParsed);
 		structOfLinesParsed.map(function(item){
 			selectIdRegister(item);
 		});
@@ -50,7 +51,7 @@ function selectIdRegister(item) {
 			arrayOfSalesInputFile = fillRegisters.fillSaleRegister(item, arrayOfSalesInputFile, balanceSale);
 			break;
 		default:
-			throw new Error('ID not recognized in System. Verify your file syntax.');	
+			etlLog.writeToLog('error','ID not recognized in System. Verify your file syntax.');	
 	}
 }
 

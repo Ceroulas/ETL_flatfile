@@ -39,10 +39,7 @@ module.exports = function(app, io) {
 	});
 
 	io.of('/log').on('connection', function(socket){
-		
 		console.log('User connected: ');
-		let fileLogPath = __dirname+'/test.log';
-			
 		socket.on('disconnect', function(){
     		console.log('User disconnected: ');
   		});
