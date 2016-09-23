@@ -7,7 +7,7 @@ const Log = require('log');
 const chai = require('chai');
 const expect = chai.expect;
 
-const parseValidator = require('./../../../transform/parse-file-validator.js');
+const parseValidator = require('./../../../transform/file-parser/file-parser-validator.js');
 const logPath = __dirname+'/../../../log/logs/test.log';
 const etlLog = require('./../../../log/etl-log.js');
 

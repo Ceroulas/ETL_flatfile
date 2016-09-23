@@ -79,18 +79,6 @@ describe('Transform Test:', () => {
         expect(resultFromLog.search(messageError)).to.not.equal(-1);
 	});
 
-
-	it('it should report Error: ID not recognized.', function(){
-		var messageError = 'ID not recognized in System. Verify your file syntax.';
-		var contentFromFile = '004ç1234567891234çDiegoç50000';
-		
-		var resultFromTransform = transform.transformFlatFile(contentFromFile);
-		sleep.usleep(50);
-        var resultFromTransform = ReadLog(logPath);
-
-        expect(resultFromTransform.search(messageError)).to.not.equal(-1);
-	});
-
 	it('it should return TypeError: no data received from Extract', () =>{
 		var messageError = 'Error';
 		

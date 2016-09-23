@@ -15,31 +15,30 @@ module.exports = {
 		if( sendMessageToLog('Costumer', structOfInfosFromLine, arrayOfUsers) )
 			return arrayOfUsers;
 
-		var costumerObj = new Costumer(structOfInfosFromLine.documentCode, structOfInfosFromLine.thirdItem, structOfInfosFromLine.fourthItem);
+		let costumerObj = new Costumer(structOfInfosFromLine.documentCode, structOfInfosFromLine.thirdItem, structOfInfosFromLine.fourthItem);
 		
 		return arrayOfUsers.concat(costumerObj); 
 	},
 
 	fillSalesmanRegister: function (structOfInfosFromLine, arrayOfUsers) {
-		
 		if( sendMessageToLog('Salesman', structOfInfosFromLine, arrayOfUsers) )
 			return arrayOfUsers;	
 
-		var salesmanObj = new Salesman(structOfInfosFromLine.documentCode, structOfInfosFromLine.thirdItem, structOfInfosFromLine.fourthItem);
+		let salesmanObj = new Salesman(structOfInfosFromLine.documentCode, structOfInfosFromLine.thirdItem, structOfInfosFromLine.fourthItem);
 
 		return arrayOfUsers.concat(salesmanObj);	
 	},
 
 	fillSaleRegister: function (structOfInfosFromLine, arrayOfUsers, balanceOfSale) {
 
-		var saleObj = new Sale(structOfInfosFromLine.documentCode, balanceOfSale, structOfInfosFromLine.fourthItem);
+		let saleObj = new Sale(structOfInfosFromLine.documentCode, balanceOfSale, structOfInfosFromLine.fourthItem);
 
 		return arrayOfUsers.concat(saleObj);
 	}	
 }
 
 function sendMessageToLog (typeOfUser, structOfUser, arrayOfUsers){
-	var messageToLog = '';
+	let messageToLog = '';
 
 	if( findIfExistentInRegister(arrayOfUsers, structOfUser.documentCode) ){
 		messageToLog =  typeOfUser+' "'+ structOfUser.thirdItem +'" already in register.';
@@ -51,11 +50,10 @@ function sendMessageToLog (typeOfUser, structOfUser, arrayOfUsers){
 }
 
 function findIfExistentInRegister (array,findCode) {
-	var isExistentInArray = false;
+	let isExistentInArray = false;
 	array.map(function(item){
-		if(item.documentCode == findCode){
+		if(item.documentCode === findCode)
 			isExistentInArray = true;
-		}
 	});
 	return isExistentInArray;
 }

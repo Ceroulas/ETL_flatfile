@@ -15,6 +15,7 @@ let storage = multer.diskStorage({
 	},
 	filename: function(req, file, cb){
 		fileInputName = file.originalname;
+		console.log('2: '+fileInputName)
 		cb(null, file.originalname);
 	}
 });
@@ -28,6 +29,9 @@ module.exports = function(app, io) {
 			monitor.once("created", function(file, stat){
 				console.log('Output File created: '+ file);
 				fileOutputName = file;
+				res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
+				res.setHeader('Access-Control-Allow-Methods', 'POST');
+				res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
 				res.status(201);
 				res.send('Output file created successfully!');
 			});
@@ -35,10 +39,13 @@ module.exports = function(app, io) {
 	});
 
 	app.get('/report', function(req, res){
+		res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
+		res.setHeader('Access-Control-Allow-Methods', 'GET');
+		res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
 		res.sendFile(fileOutputName);	
 	});
 
-	io.of('/log').on('connection', function(socket){
+	io.on('connection', function(socket){
 		console.log('User connected: ');
 		socket.on('disconnect', function(){
     		console.log('User disconnected: ');

@@ -6,7 +6,7 @@ const sleep = require('sleep');
 const Log = require('log');
 const chai = require('chai');
 const expect = chai.expect;
-const transform = require('./../../../transform/parse-sale-info.js');
+const transform = require('./../../../transform/sale-parser/sale-parser.js');
 
 const filePath = __dirname+'/../../resources/test.dat';
 const logPath = __dirname+'/../../../log/logs/test.log';

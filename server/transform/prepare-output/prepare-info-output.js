@@ -1,7 +1,7 @@
 'use strict';
 
-const Costumer = require('./models/costumer-register.js');
-const Salesman = require('./models/salesman-register.js');
+const Costumer = require('./../models/costumer-register.js');
+const Salesman = require('./../models/salesman-register.js');
 
 module.exports = {
 	prepareInfoForLoad: function ( worstSalesman, highestSale ) {

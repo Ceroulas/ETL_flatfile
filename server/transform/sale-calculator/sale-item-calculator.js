@@ -1,8 +1,9 @@
 'use strict';
 
-const fillRegisters = require('./fill-registers.js');
-const calculateSale = require('./calculate-sale.js');
-const parseSaleInfo = require('./parse-sale-info.js');
+const calculateSale = require('./sale-calculator.js');
+const parseSaleInfo = require('./../sale-parser/sale-parser.js');
+
+const TYPE_SALE = 'Sale';
 
 module.exports = {
 
@@ -13,19 +14,20 @@ module.exports = {
 	},	
 
 	calculateMostExpensiveSale: function (infoFromStructOfLines) {
-		return Math.max.apply(null, mapSalesArray(infoFromStructOfLines));
+		return Math.max.apply(null, mapArrayOfSales(infoFromStructOfLines));
 	},
 
 	calculateWorstSalesman: function (infoFromStructOfLines) {
-		var minSale = Math.min.apply(null, mapSalesArray(infoFromStructOfLines));
+		var minSale = Math.min.apply(null, mapArrayOfSales(infoFromStructOfLines));
 		return findWorstSalesmanInArray(infoFromStructOfLines, minSale);
 	}
 }
 
-function mapSalesArray (salesArray) {
-	return salesArray.map(function(item){
-			return item.balanceOfSales;
-		 });
+function mapArrayOfSales( array ) {
+	return array.filter(function(item){
+			if(item.constructor.name === TYPE_SALE)
+				return item.balanceOfSales;				
+		 }).map(function(item){ return item.balanceOfSales});
 }
 
 function findWorstSalesmanInArray (salesArray, minSale) {

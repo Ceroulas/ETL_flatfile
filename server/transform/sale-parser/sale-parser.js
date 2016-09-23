@@ -1,6 +1,6 @@
 'use strict';
 
-const etlLog = require('./../log/etl-log.js');
+const etlLog = require('./../../log/etl-log.js');
 
 const SEPARATOR_FOR_EACH_SALE = ',';
 const SEPARATOR_ITEMS_FROM_EACH_SALE = '-';
