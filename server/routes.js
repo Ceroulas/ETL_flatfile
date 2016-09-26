@@ -50,7 +50,7 @@ module.exports = function(app, io) {
 		socket.on('disconnect', function(){
     		console.log('User disconnected: ');
   		});
-
+		  
 		logFileWatcher.tailFile(io, fileInputName);
 	});
 
